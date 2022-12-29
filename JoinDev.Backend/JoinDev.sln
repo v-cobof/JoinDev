@@ -1,0 +1,36 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.2.32505.173
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "API", "API", "{DE3908D3-D9C0-4CF1-B974-4520B80BE497}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Application", "Application", "{21C3FEEF-0B9B-4FAE-882A-56C30D6D198D}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Domain", "Domain", "{00A4F0C7-0C5A-4E1F-B75A-259A107588CE}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Infrastructure", "Infrastructure", "{FB3A0FB6-F0E7-4EC0-A18A-3B77542CE5C0}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JoinDev.Domain", "src\JoinDev.Domain\JoinDev.Domain.csproj", "{53DD46FB-0892-4F4B-B9BB-665135655CAC}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{53DD46FB-0892-4F4B-B9BB-665135655CAC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{53DD46FB-0892-4F4B-B9BB-665135655CAC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{53DD46FB-0892-4F4B-B9BB-665135655CAC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{53DD46FB-0892-4F4B-B9BB-665135655CAC}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{53DD46FB-0892-4F4B-B9BB-665135655CAC} = {00A4F0C7-0C5A-4E1F-B75A-259A107588CE}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {DAB8144C-F448-482A-8F3B-E5AA9191F207}
+	EndGlobalSection
+EndGlobal
