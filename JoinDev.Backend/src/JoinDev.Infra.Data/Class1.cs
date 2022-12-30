@@ -1,4 +1,4 @@
-﻿namespace JoinDev.Infra.Data.Read
+﻿namespace JoinDev.Infra.Data
 {
     public class Class1
     {
