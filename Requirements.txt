@@ -1,0 +1,31 @@
+On the startup screen, user must be able to:
+	1. Register
+	2. Login
+	3. Signup with GitHub
+	
+On any page, user always must be able to navigate through different pages
+	1. main page
+	2. projects they've created
+	3. projects they are participating
+	4. their profile
+
+1. On the main page, user must be able to:
+	1. Scroll through other people's projects
+	2. Do a text search through users and projects
+	3. filter projects by:
+		1. Tecnology
+		2. Category (Job or Study)
+	4. Show interest in a project
+		
+2. On created projects, user must be able to
+	1. Create a new project
+	2. See a list of his projects
+	3. Edit or delete each project
+	4. See interested users
+	5. Approve or decline a user into their project
+	6. Manage participant users
+
+3. On projects i'm in, user must be able to:
+	1. See projects they're members of
+	2. See projects they've shown interest in
+	3. See full detail of projects you're in, including users
