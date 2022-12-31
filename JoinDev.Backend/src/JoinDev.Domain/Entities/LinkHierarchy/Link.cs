@@ -15,5 +15,7 @@ namespace JoinDev.Domain.Entities
             Url = url;
             LinkSource = linkSource;
         }
+
+        protected Link() { }
     }
 }

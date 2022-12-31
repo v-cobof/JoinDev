@@ -7,12 +7,13 @@ using System.Threading.Tasks;
 
 namespace JoinDev.Domain.Entities
 {
-    public class ProjectLink : Link
+    public class UserLink : Link
     {
         // EF
-        public ProjectRestrictedInfo ProjectRestrictedInfo { get; private set; }
+        public User User { get; private set; }
+        public Guid UserId { get; private set; }
 
-        public ProjectLink(string name, string url, LinkSource linkSource) : base(name, url, linkSource)
+        public UserLink(string name, string url, LinkSource linkSource) : base(name, url, linkSource)
         {
         }
     }

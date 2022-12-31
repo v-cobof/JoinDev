@@ -16,5 +16,14 @@ namespace JoinDev.Domain.Entities
         // EF - 1:N
         private List<ProjectLink> _links;
         public IReadOnlyCollection<ProjectLink> Links => _links;
+
+        public ProjectRestrictedInfo(string description, Guid projectId, List<ProjectLink> links)
+        {
+            Description = description;
+            ProjectId = projectId;
+            _links = links;
+        }
+
+        protected ProjectRestrictedInfo() { }
     }
 }

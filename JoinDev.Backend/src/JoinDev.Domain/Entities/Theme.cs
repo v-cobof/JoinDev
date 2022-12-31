@@ -23,5 +23,7 @@ namespace JoinDev.Domain.Entities
             Name = name;
             ThemeCategory = themeCategory;
         }
+
+        protected Theme() { }
     }
 }
