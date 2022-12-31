@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace JoinDev.Domain.Core.Data
 {
-    public interface IUnitOfWork
+    public interface IUnitOfWorkBase
     {
         Task<bool> Commit();
     }

@@ -2,7 +2,8 @@
 {
     public abstract class Entity
     {
-        public Guid Id { get; set; }
+        public Guid Id { get; }
+        public DateTime Timestamp { get; }
 
         public Entity()
         {
