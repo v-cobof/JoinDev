@@ -9,24 +9,31 @@ namespace JoinDev.Domain.Entities
         public string PhoneNumber { get; private set; }
         public string Description { get; private set; }
         public string Image { get; private set; }
-        public string GitHubProfile { get; private set; }
 
-        // EF - Many to many relationship with Project
+        // EF - 1:N
+        private List<UserLink> _links;
+        public IReadOnlyCollection<UserLink> Links => _links;
+
+        // EF - N:N - Project
         private readonly List<Project> _projectsAsMember;
         public IReadOnlyCollection<Project> ProjectsAsMember => _projectsAsMember;
 
-        // EF - One to many relationship with Project
+        // EF - N:N - Project
+        private readonly List<Project> _projectsAsInterested;
+        public IReadOnlyCollection<Project> ProjectsAsInterested => _projectsAsInterested;
+
+        // EF - 1:N - Project
         private readonly List<Project> _projectsAsCreator;
         public IReadOnlyCollection<Project> ProjectsAsCreator => _projectsAsCreator;
 
-        public User(string name, string email, string phoneNumber, string description, string image, string gitHubProfile)
+        public User(string name, string email, string phoneNumber, string description, string image, List<UserLink> links)
         {
             Name = name;
             Email = email;
             PhoneNumber = phoneNumber;
             Description = description;
             Image = image;
-            GitHubProfile = gitHubProfile;
+            _links = links;
         }
 
         // EF
