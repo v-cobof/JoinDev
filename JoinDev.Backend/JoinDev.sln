@@ -19,7 +19,9 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "CrossCutting", "CrossCuttin
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "JoinDev.Domain.Core", "src\JoinDev.Domain.Core\JoinDev.Domain.Core.csproj", "{054FB0D1-A6A3-4A31-A2EC-DFF84F975ED1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JoinDev.Infra.Data", "src\JoinDev.Infra.Data\JoinDev.Infra.Data.csproj", "{403ABD23-D5E4-4835-84B8-E9C080237EDB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "JoinDev.Infra.Data", "src\JoinDev.Infra.Data\JoinDev.Infra.Data.csproj", "{403ABD23-D5E4-4835-84B8-E9C080237EDB}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JoinDev.API", "src\JoinDev.API\JoinDev.API.csproj", "{2D8DF271-BB88-49B6-9881-9CB68A5D32F8}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -39,6 +41,10 @@ Global
 		{403ABD23-D5E4-4835-84B8-E9C080237EDB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{403ABD23-D5E4-4835-84B8-E9C080237EDB}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{403ABD23-D5E4-4835-84B8-E9C080237EDB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2D8DF271-BB88-49B6-9881-9CB68A5D32F8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2D8DF271-BB88-49B6-9881-9CB68A5D32F8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2D8DF271-BB88-49B6-9881-9CB68A5D32F8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2D8DF271-BB88-49B6-9881-9CB68A5D32F8}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -49,6 +55,7 @@ Global
 		{D5AC0C80-60D9-43A5-B98C-09B8AEEF4A4A} = {FB3A0FB6-F0E7-4EC0-A18A-3B77542CE5C0}
 		{054FB0D1-A6A3-4A31-A2EC-DFF84F975ED1} = {00A4F0C7-0C5A-4E1F-B75A-259A107588CE}
 		{403ABD23-D5E4-4835-84B8-E9C080237EDB} = {4F2D165A-CDC9-423B-8DF9-6095C303DC85}
+		{2D8DF271-BB88-49B6-9881-9CB68A5D32F8} = {DE3908D3-D9C0-4CF1-B974-4520B80BE497}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {DAB8144C-F448-482A-8F3B-E5AA9191F207}
