@@ -14,7 +14,7 @@ namespace JoinDev.Domain.Enums
         Database = 3,
         SoftwareEngineering = 4,
         SoftwareArchitecture = 5,
-        ComputerScience = 5,
-        Agile = 6,
+        ComputerScience = 6,
+        Agile = 7,
     }
 }

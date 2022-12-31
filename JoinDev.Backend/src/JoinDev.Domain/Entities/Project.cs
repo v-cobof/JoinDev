@@ -13,13 +13,9 @@ namespace JoinDev.Domain.Entities
         public string Title { get; private set; }
         public string PublicDescription { get; private set; }
         public int AvailableSpots { get; private set; }
+        public ProjectRestrictedInfo ProjectRestrictedInfo { get; private set; }
         public ProjectCategory Category { get; private set; }
         public ProjectStatus ProjectStatus { get; private set; }
-
-        public ProjectRestrictedInfo ProjectRestrictedInfo { get; private set; }
-
-        private readonly List<string> _participantRequirements;
-        public IReadOnlyCollection<string> ParticipantRequirements => _participantRequirements;
 
         private List<Theme> _themes;
         public IReadOnlyCollection<Theme> Themes => _themes;
@@ -35,5 +31,30 @@ namespace JoinDev.Domain.Entities
         // EF - Many to Many relationship with User
         private readonly List<User> _interestedUsers;
         public IReadOnlyCollection<User> InterestedUsers => _interestedUsers;
+
+        public Project(string title, string publicDescription, int availableSpots, ProjectRestrictedInfo projectRestrictedInfo, ProjectCategory category, List<Theme> themes, Guid creatorId)
+        {
+            Title = title;
+            PublicDescription = publicDescription;
+            AvailableSpots = availableSpots;
+            ProjectRestrictedInfo = projectRestrictedInfo;
+            Category = category;
+            _themes = themes;
+            CreatorId = creatorId;
+            ProjectStatus = ProjectStatus.Preparation;
+
+            _memberUsers = new List<User>();
+            _interestedUsers = new List<User>();
+        }
+
+        protected Project()
+        {
+            _memberUsers = new List<User>();
+            _interestedUsers = new List<User>();
+        }
+
+        
+
+        
     }
 }

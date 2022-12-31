@@ -13,5 +13,11 @@ namespace JoinDev.Domain.Entities
         public string Name { get; private set; }
 
         public ThemeCategory ThemeCategory { get; private set; }
+
+        public Theme(string name, ThemeCategory themeCategory)
+        {
+            Name = name;
+            ThemeCategory = themeCategory;
+        }
     }
 }
