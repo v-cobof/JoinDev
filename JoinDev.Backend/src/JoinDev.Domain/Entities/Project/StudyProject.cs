@@ -16,5 +16,7 @@ namespace JoinDev.Domain.Entities
         {
             StudyProjectLevel = level;
         }
+
+        protected StudyProject() : base() { }
     }
 }

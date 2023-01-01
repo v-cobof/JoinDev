@@ -19,5 +19,7 @@ namespace JoinDev.Domain.Entities
             JobProjectLevel = level;
             MemberPayment = memberPayment;
         }
+
+        protected JobProject() : base() { }
     }
 }
