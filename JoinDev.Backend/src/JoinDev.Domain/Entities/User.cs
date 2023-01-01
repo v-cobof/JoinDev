@@ -8,7 +8,6 @@ namespace JoinDev.Domain.Entities
         public string Email { get; private set; }
         public string PhoneNumber { get; private set; }
         public string Description { get; private set; }
-        public string Image { get; private set; }
 
         // EF - 1:N
         private List<UserLink> _links;
@@ -26,13 +25,12 @@ namespace JoinDev.Domain.Entities
         private readonly List<Project> _projectsAsCreator;
         public IReadOnlyCollection<Project> ProjectsAsCreator => _projectsAsCreator;
 
-        public User(string name, string email, string phoneNumber, string description, string image, List<UserLink> links)
+        public User(string name, string email, string phoneNumber, string description, List<UserLink> links)
         {
             Name = name;
             Email = email;
             PhoneNumber = phoneNumber;
             Description = description;
-            Image = image;
             _links = links;
         }
 
