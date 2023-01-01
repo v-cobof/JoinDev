@@ -1,5 +1,6 @@
 ﻿using JoinDev.Domain.Data;
 using JoinDev.Domain.Entities;
+using JoinDev.Domain.Enums;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -38,6 +39,16 @@ namespace JoinDev.Infra.Data.Repositories
         public void Dispose()
         {
             _context.Dispose();
+        }
+
+        public async Task<IEnumerable<Project>> GetAllProjects()
+        {
+            return await _context.Projects
+                .Include(t => t.ProjectRestrictedInfo)
+                .Include(t => t.Creator)
+                .Include(t => t.MemberUsers)
+                .Include(t => t.InterestedUsers)
+                .ToListAsync();  
         }
     }
 }

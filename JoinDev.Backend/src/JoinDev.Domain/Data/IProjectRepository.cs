@@ -13,5 +13,7 @@ namespace JoinDev.Domain.Data
         void Create(Project project);
 
         Task<Project> GetById(Guid id);
+
+        Task<IEnumerable<Project>> GetAllProjects();
     }
 }

@@ -56,6 +56,21 @@ namespace JoinDev.Domain.Entities
             ProjectRestrictedInfo = projectRestrictedInfo;
         }
 
-        
+        public void AddInterestedUser(User user)
+        {
+            _interestedUsers.Add(user);
+        }
+
+        public void AddMemberFromInterestedUsers(Guid userId)
+        {
+            var user = _interestedUsers.SingleOrDefault(t => t.Id == userId);
+
+            if (user == default) 
+                throw new DomainException("The user did not declare interest in the project.");
+
+            _interestedUsers.Remove(user);
+
+            _memberUsers.Add(user);
+        }
     }
 }
