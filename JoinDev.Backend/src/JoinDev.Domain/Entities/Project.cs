@@ -11,6 +11,7 @@ namespace JoinDev.Domain.Entities
         public int AvailableSpots => TotalSpots - _memberUsers.Count;
         public ProjectCategory Category { get; private set; }
         public ProjectStatus ProjectStatus { get; private set; }
+        //public DateTime StartDate { get; private set; }
 
         // EF - N:N - Theme
         private List<Theme> _themes;
@@ -31,12 +32,11 @@ namespace JoinDev.Domain.Entities
         private readonly List<User> _interestedUsers;
         public IReadOnlyCollection<User> InterestedUsers => _interestedUsers;
 
-        public Project(string title, string publicDescription, int totalSpots, ProjectRestrictedInfo projectRestrictedInfo, ProjectCategory category, List<Theme> themes, Guid creatorId)
+        public Project(string title, string publicDescription, int totalSpots, ProjectCategory category, List<Theme> themes, Guid creatorId)
         {
             Title = title;
             PublicDescription = publicDescription;
             TotalSpots = totalSpots;
-            ProjectRestrictedInfo = projectRestrictedInfo;
             Category = category;
             _themes = themes;
             CreatorId = creatorId;
@@ -52,7 +52,10 @@ namespace JoinDev.Domain.Entities
             _interestedUsers = new List<User>();
         }
 
-        
+        public void AddProjectRestrictedInfo(ProjectRestrictedInfo projectRestrictedInfo)
+        {
+            ProjectRestrictedInfo = projectRestrictedInfo;
+        }
 
         
     }

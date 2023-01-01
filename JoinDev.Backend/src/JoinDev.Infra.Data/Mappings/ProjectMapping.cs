@@ -12,7 +12,8 @@ namespace JoinDev.Infra.Data.Mappings
 
             // 1:N
             builder.HasOne(c => c.Creator)
-                .WithMany(c => c.ProjectsAsCreator);
+                .WithMany(c => c.ProjectsAsCreator)
+                .HasForeignKey(t => t.CreatorId);
 
             // N:N
             builder.HasMany(c => c.MemberUsers)

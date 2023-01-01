@@ -1,4 +1,5 @@
 ﻿using JoinDev.Domain.Core.Data;
+using JoinDev.Domain.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,10 +8,10 @@ using System.Threading.Tasks;
 
 namespace JoinDev.Domain.Data
 {
-    public interface IUnitOfWork : IUnitOfWorkBase
+    public interface IProjectRepository : IRepository<Project>
     {
-        IUserRepository Users { get; }
+        void CreateProject(Project project);
 
-        IProjectRepository Projects { get; }
+        Task<Project> GetById(Guid id);
     }
 }
