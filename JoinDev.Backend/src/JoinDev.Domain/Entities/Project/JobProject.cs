@@ -1,4 +1,5 @@
 ﻿using JoinDev.Domain.Enums;
+using JoinDev.Domain.Core.DomainObjects;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -21,5 +22,12 @@ namespace JoinDev.Domain.Entities
         }
 
         protected JobProject() : base() { }
+
+        public new void Validate()
+        {
+            base.Validate();
+
+            MemberPayment.ShouldNotBeLessThanNorEqualTo(0, nameof(MemberPayment));
+        }
     }
 }

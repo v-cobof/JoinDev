@@ -17,5 +17,11 @@ namespace JoinDev.Domain.Entities
         }
 
         protected Link() { }
+
+        protected virtual void Validate()
+        {
+            Name.ShouldNotBeEmpty(nameof(Name));
+            Url.ShouldNotBeEmpty(nameof(Url));                  
+        }
     }
 }

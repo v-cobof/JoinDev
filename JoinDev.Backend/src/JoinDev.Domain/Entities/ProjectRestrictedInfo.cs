@@ -22,8 +22,17 @@ namespace JoinDev.Domain.Entities
             Description = description;
             ProjectId = projectId;
             _links = links;
+
+            Validate();
         }
 
         protected ProjectRestrictedInfo() { }
+
+        public void Validate()
+        {
+            Description.ShouldNotBeEmpty(nameof(Description));
+            ProjectId.ShouldNotBeEqualTo(Guid.Empty, nameof(ProjectId));
+            Links.ShouldNotBeEmpty(nameof(Links));
+        }
     }
 }

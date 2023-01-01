@@ -1,4 +1,5 @@
-﻿using JoinDev.Domain.Enums;
+﻿using JoinDev.Domain.Core.DomainObjects;
+using JoinDev.Domain.Enums;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,6 +16,13 @@ namespace JoinDev.Domain.Entities
 
         public ProjectLink(string name, string url, LinkSource linkSource) : base(name, url, linkSource)
         {
+            Validate();
+        }
+
+        public new void Validate()
+        {
+            base.Validate();
+
         }
     }
 }

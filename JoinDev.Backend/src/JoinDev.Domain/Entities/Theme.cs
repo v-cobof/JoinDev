@@ -22,8 +22,15 @@ namespace JoinDev.Domain.Entities
         {
             Name = name;
             ThemeCategory = themeCategory;
+
+            Validate();
         }
 
         protected Theme() { }
+
+        public void Validate()
+        {
+            Name.ShouldNotBeEmpty(nameof(Name));
+        }
     }
 }

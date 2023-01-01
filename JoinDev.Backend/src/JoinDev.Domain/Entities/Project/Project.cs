@@ -63,6 +63,9 @@ namespace JoinDev.Domain.Entities
 
         public void AddMemberFromInterestedUsers(Guid userId)
         {
+            if (AvailableSpots == 0)
+                throw new DomainException("There are no more available spots in the project.");
+
             var user = _interestedUsers.SingleOrDefault(t => t.Id == userId);
 
             if (user == default) 
@@ -71,6 +74,14 @@ namespace JoinDev.Domain.Entities
             _interestedUsers.Remove(user);
 
             _memberUsers.Add(user);
+        }
+
+        protected virtual void Validate()
+        {
+            Title.ShouldNotBeEmpty(nameof(Title));
+            PublicDescription.ShouldNotBeEmpty(nameof(PublicDescription));
+            TotalSpots.ShouldNotBeLessThanNorEqualTo(0, nameof(TotalSpots));
+            CreatorId.ShouldNotBeEqualTo(Guid.Empty, nameof(CreatorId));
         }
     }
 }

@@ -18,5 +18,10 @@ namespace JoinDev.Domain.Entities
         }
 
         protected StudyProject() : base() { }
+
+        public new void Validate()
+        {
+            base.Validate();
+        }
     }
 }

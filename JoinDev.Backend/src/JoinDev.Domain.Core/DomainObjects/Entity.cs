@@ -8,6 +8,7 @@
         public Entity()
         {
             Id = Guid.NewGuid();
+            Timestamp = DateTime.UtcNow;
         }       
 
         public override bool Equals(object obj)
