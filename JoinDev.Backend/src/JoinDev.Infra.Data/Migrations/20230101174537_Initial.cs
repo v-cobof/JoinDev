@@ -44,8 +44,7 @@ namespace JoinDev.Infra.Data.Migrations
                     Name = table.Column<string>(type: "varchar(100)", nullable: true),
                     Email = table.Column<string>(type: "varchar(100)", nullable: true),
                     PhoneNumber = table.Column<string>(type: "varchar(100)", nullable: true),
-                    Description = table.Column<string>(type: "varchar(100)", nullable: true),
-                    Image = table.Column<string>(type: "varchar(100)", nullable: true)
+                    Description = table.Column<string>(type: "varchar(100)", nullable: true)
                 },
                 constraints: table =>
                 {

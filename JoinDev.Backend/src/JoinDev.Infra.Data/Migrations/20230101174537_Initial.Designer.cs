@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace JoinDev.Infra.Data.Migrations
 {
     [DbContext(typeof(JoinDevContext))]
-    [Migration("20230101172553_Initial")]
+    [Migration("20230101174537_Initial")]
     partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -119,9 +119,6 @@ namespace JoinDev.Infra.Data.Migrations
                         .HasColumnType("varchar(100)");
 
                     b.Property<string>("Email")
-                        .HasColumnType("varchar(100)");
-
-                    b.Property<string>("Image")
                         .HasColumnType("varchar(100)");
 
                     b.Property<string>("Name")

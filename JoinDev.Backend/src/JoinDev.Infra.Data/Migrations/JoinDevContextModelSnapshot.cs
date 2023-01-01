@@ -119,9 +119,6 @@ namespace JoinDev.Infra.Data.Migrations
                     b.Property<string>("Email")
                         .HasColumnType("varchar(100)");
 
-                    b.Property<string>("Image")
-                        .HasColumnType("varchar(100)");
-
                     b.Property<string>("Name")
                         .HasColumnType("varchar(100)");
 
