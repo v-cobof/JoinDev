@@ -10,7 +10,7 @@ namespace JoinDev.Domain.Data
 {
     public interface IProjectRepository : IRepository<Project>
     {
-        void CreateProject(Project project);
+        void Create(Project project);
 
         Task<Project> GetById(Guid id);
     }

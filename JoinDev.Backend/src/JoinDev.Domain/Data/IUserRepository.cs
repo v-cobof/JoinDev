@@ -8,7 +8,7 @@ namespace JoinDev.Domain.Data
     {
         Task<User> GetById(Guid id);
 
-        void CreateUser(User user);
+        void Create(User user);
 
     }
 }

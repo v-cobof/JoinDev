@@ -18,14 +18,9 @@ namespace JoinDev.Infra.Data.Repositories
             _context = context;
         }
 
-        public void CreateProject(Project project)
+        public void Create(Project project)
         {
             _context.Projects.Add(project);
-        }
-
-        public void Dispose()
-        {
-            _context.Dispose();
         }
 
         public async Task<Project> GetById(Guid id)
@@ -33,6 +28,16 @@ namespace JoinDev.Infra.Data.Repositories
             var proj = await _context.Projects.FindAsync(id);
 
             return proj;
+        }
+
+        public void Update(Project entity)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void Dispose()
+        {
+            _context.Dispose();
         }
     }
 }
