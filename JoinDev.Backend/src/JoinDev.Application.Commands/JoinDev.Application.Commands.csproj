@@ -6,4 +6,13 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <Folder Include="User\" />
+    <Folder Include="Project\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\JoinDev.Domain.Core\JoinDev.Domain.Core.csproj" />
+  </ItemGroup>
+
 </Project>

@@ -1,6 +1,8 @@
-﻿namespace JoinDev.Domain.Core.Communication.Messages
+﻿using MediatR;
+
+namespace JoinDev.Domain.Core.Communication.Messages
 {
-    public interface IEvent
+    public interface IEvent : INotification
     {
     }
 }

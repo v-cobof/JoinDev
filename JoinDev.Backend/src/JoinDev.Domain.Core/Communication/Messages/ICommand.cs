@@ -1,6 +1,8 @@
-﻿namespace JoinDev.Domain.Core.Communication.Messages
+﻿using MediatR;
+
+namespace JoinDev.Domain.Core.Communication.Messages
 {
-    public interface ICommand
+    public interface ICommand : IRequest
     {
     }
 }
