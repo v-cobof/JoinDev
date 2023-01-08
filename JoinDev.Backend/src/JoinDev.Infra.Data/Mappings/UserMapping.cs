@@ -10,24 +10,6 @@ namespace JoinDev.Infra.Data.Mappings
         {
             builder.HasKey(c => c.Id);
 
-            // 1:1
-            builder.HasOne(c => c.UserSecretInfo)
-                .WithOne(c => c.User)
-                .HasForeignKey<UserSecretInfo>(c => c.UserId);
-
-            // 1:N
-            builder.HasMany(c => c.ProjectsAsCreator)
-                .WithOne(c => c.Creator)
-                .HasForeignKey(c => c.CreatorId);
-
-            // N:N
-            builder.HasMany(c => c.ProjectsAsMember)
-                .WithMany(c => c.MemberUsers);
-
-            // N:N
-            builder.HasMany(c => c.ProjectsAsInterested)
-                .WithMany(c => c.InterestedUsers);
-
             // 1:N
             builder.HasMany(c => c.Links)
                 .WithOne(c => c.User)

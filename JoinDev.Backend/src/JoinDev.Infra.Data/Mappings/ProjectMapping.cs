@@ -17,20 +17,13 @@ namespace JoinDev.Infra.Data.Mappings
 
             // N:N
             builder.HasMany(c => c.MemberUsers)
-                .WithMany(c => c.ProjectsAsMember);
+                .WithMany(c => c.ProjectsAsMember)
+                .UsingEntity(t => t.ToTable("MembersInProjects"));
 
             // N:N
             builder.HasMany(c => c.InterestedUsers)
-                .WithMany(c => c.ProjectsAsInterested);
-
-            // N:N
-            builder.HasMany(c => c.Themes)
-                .WithMany(c => c.Projects);
-
-            // 1:1
-            builder.HasOne(c => c.ProjectRestrictedInfo)
-                .WithOne(c => c.Project)
-                .HasForeignKey<ProjectRestrictedInfo>(c => c.ProjectId);
+                .WithMany(c => c.ProjectsAsInterested)
+                .UsingEntity(c => c.ToTable("InterestedInProjects"));
 
             builder.ToTable("Projects");
         }
