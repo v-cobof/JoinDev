@@ -2,7 +2,7 @@
 
 namespace JoinDev.Domain.Core.Communication.Messages
 {
-    public interface IEvent : INotification
+    public abstract class Event : Message, INotification
     {
     }
 }

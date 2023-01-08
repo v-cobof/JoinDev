@@ -13,7 +13,7 @@ namespace JoinDev.Infra.CrossCutting.Bus
             _mediator = mediator;
         }
 
-        public async Task PublishEvent<T>(T @event) where T : IEvent
+        public async Task PublishEvent<T>(T @event) where T : Event
         {
             await _mediator.Publish(@event);
         }
