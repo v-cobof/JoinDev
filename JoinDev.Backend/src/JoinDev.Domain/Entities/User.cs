@@ -4,10 +4,11 @@ namespace JoinDev.Domain.Entities
 {
     public class User : Entity, IAggregateRoot
     {
-        public string Name { get; private set; }
-        public string Email { get; private set; }
-        public string PhoneNumber { get; private set; }
+        public string FullName { get; private set; }
+        public string NickName { get; private set; }
         public string Description { get; private set; }
+        public string Image { get; private set; }
+        public UserSecretInfo UserSecretInfo { get; private set; }
 
         // EF - 1:N
         private List<UserLink> _links;
@@ -25,13 +26,13 @@ namespace JoinDev.Domain.Entities
         private readonly List<Project> _projectsAsCreator;
         public IReadOnlyCollection<Project> ProjectsAsCreator => _projectsAsCreator;
 
-        public User(string name, string email, string phoneNumber, string description, List<UserLink> links)
+        public User(string fullName, string nickName, string description, List<UserLink> links, UserSecretInfo userSecretInfo)
         {
-            Name = name;
-            Email = email;
-            PhoneNumber = phoneNumber;
+            FullName = fullName;
+            NickName = nickName;            
             Description = description;
             _links = links;
+            UserSecretInfo = userSecretInfo;
         }
 
         // EF
