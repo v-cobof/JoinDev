@@ -24,6 +24,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\JoinDev.Infra.CrossCutting.IoC\JoinDev.Infra.CrossCutting.IoC.csproj" />
     <ProjectReference Include="..\JoinDev.Infra.Data\JoinDev.Infra.Data.csproj" />
   </ItemGroup>
 
