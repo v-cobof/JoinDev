@@ -28,4 +28,8 @@
     <ProjectReference Include="..\JoinDev.Infra.Data\JoinDev.Infra.Data.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Controllers\" />
+  </ItemGroup>
+
 </Project>
