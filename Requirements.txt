@@ -24,8 +24,22 @@ On any page, user always must be able to navigate through different pages
 	4. See interested users
 	5. Approve or decline a user into their project
 	6. Manage participant users
+	7. Manage project status, and it must start by itself when expected date comes
 
 3. On projects i'm in, user must be able to:
 	1. See projects they're members of
 	2. See projects they've shown interest in
 	3. See full detail of projects you're in, including users
+
+The Category Study or Job must be well structured, so in the future,
+their specific features can be enhanced (Inheritance)
+
+------Aggregates------
+
+User
+	UserLinks
+
+Project
+	Themes
+	ProjectRestrictedInfo
+		ProjectLinks
