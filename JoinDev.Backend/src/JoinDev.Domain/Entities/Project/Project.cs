@@ -1,4 +1,5 @@
 ﻿using JoinDev.Domain.Core.DomainObjects;
+using JoinDev.Domain.Core.Validation;
 using JoinDev.Domain.Enums;
 
 namespace JoinDev.Domain.Entities

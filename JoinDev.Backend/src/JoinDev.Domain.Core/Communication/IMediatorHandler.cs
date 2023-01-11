@@ -1,4 +1,5 @@
 ﻿using JoinDev.Domain.Core.Communication.Messages;
+using JoinDev.Domain.Core.Validation.Results;
 using MediatR;
 
 namespace JoinDev.Infra.CrossCutting.Bus.Mediator
@@ -7,6 +8,6 @@ namespace JoinDev.Infra.CrossCutting.Bus.Mediator
     {
         Task PublishEvent<T>(T @event) where T : Event;
 
-        Task<Unit> SendCommand<T>(T command) where T : ICommand;
+        Task<CommandResult> SendCommand<T>(T command) where T : ICommand;
     }
 }

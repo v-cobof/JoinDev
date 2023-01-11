@@ -1,10 +1,10 @@
 ﻿using JoinDev.Domain.Enums;
-using JoinDev.Domain.Core.DomainObjects;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using JoinDev.Domain.Core.Validation;
 
 namespace JoinDev.Domain.Entities
 {

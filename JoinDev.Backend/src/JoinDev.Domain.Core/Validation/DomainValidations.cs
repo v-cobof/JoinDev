@@ -1,12 +1,13 @@
-﻿using System;
+﻿using JoinDev.Domain.Core.DomainObjects;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace JoinDev.Domain.Core.DomainObjects
+namespace JoinDev.Domain.Core.Validation
 {
-    public static class Validation
+    public static class DomainValidations
     {
         public static void ShouldNotBeEqualTo(this object obj1, object obj2, string property)
         {

@@ -1,4 +1,5 @@
 ﻿using JoinDev.Domain.Core.DomainObjects;
+using JoinDev.Domain.Core.Validation;
 using System;
 using System.Collections.Generic;
 using System.Linq;
