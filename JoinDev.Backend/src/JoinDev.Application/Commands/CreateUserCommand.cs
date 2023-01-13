@@ -1,4 +1,7 @@
-﻿using System;
+﻿using JoinDev.Application.Commands.Validations;
+using JoinDev.Application.Mappers;
+using JoinDev.Domain.Core.Communication.Messages;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -27,7 +30,8 @@ namespace JoinDev.Application.Commands
 
         public override bool IsValid()
         {
-            throw new NotImplementedException();
+            ValidationResult = new CreateUserCommandValidation().Validate(this).ToCommandResult();
+            return ValidationResult.IsValid();
         }
     }
 }

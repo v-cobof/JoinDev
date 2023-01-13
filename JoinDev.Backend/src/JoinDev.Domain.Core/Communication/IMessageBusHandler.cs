@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace JoinDev.Infra.CrossCutting.Bus.MessageBus
+namespace JoinDev.Domain.Core.Communication
 {
     public interface IMessageBusHandler
     {

@@ -1,6 +1,7 @@
 ﻿using JoinDev.API.Configurations;
 using JoinDev.Infra.Data;
 using Microsoft.EntityFrameworkCore;
+using MediatR;
 
 namespace JoinDev.API
 {
@@ -24,6 +25,7 @@ namespace JoinDev.API
             services.AddEndpointsApiExplorer();
             services.AddSwaggerGen();
 
+            services.AddMediatR(typeof(Program));
             services.AddDependencyInjectionConfiguration();
         }
 

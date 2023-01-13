@@ -9,5 +9,10 @@ namespace JoinDev.Domain.Core.Validation.Results
     public class ValidationError
     {
         public string ErrorMessage { get; set; }
+
+        public ValidationError(string errorMessage)
+        {
+            ErrorMessage = errorMessage;
+        }
     }
 }

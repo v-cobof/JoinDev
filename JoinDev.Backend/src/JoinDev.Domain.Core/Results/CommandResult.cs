@@ -12,17 +12,19 @@ namespace JoinDev.Domain.Core.Validation.Results
 
         public IEnumerable<ValidationError> Errors { get; set; }
 
-        public CommandResult(bool success)
+        public CommandResult() 
         {
-            Success = success;
+            Errors = new List<ValidationError>();
         }
 
         public static Task<CommandResult> Successful()
         {
-            return Task.FromResult(new CommandResult(true));
+            return Task.FromResult(new CommandResult() { Success = true });
         }
 
-        public static implicit operator CommandResult(bool success)
-        => new CommandResult(success);
+        public bool IsValid()
+        {
+            return !Errors.Any();
+        }
     }
 }

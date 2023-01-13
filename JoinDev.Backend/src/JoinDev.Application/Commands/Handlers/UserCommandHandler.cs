@@ -14,7 +14,7 @@ namespace JoinDev.Application.Commands.Handlers
         {
 
 
-            
+            return CommandResult.Successful();
         }
     }
 }

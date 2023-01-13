@@ -1,6 +1,6 @@
-﻿using JoinDev.Domain.Core.Communication.Messages;
+﻿using JoinDev.Domain.Core.Communication;
+using JoinDev.Domain.Core.Communication.Messages;
 using JoinDev.Domain.Core.Validation.Results;
-using JoinDev.Infra.CrossCutting.Bus.Mediator;
 using MediatR;
 
 namespace JoinDev.Infra.CrossCutting.Bus
@@ -19,7 +19,7 @@ namespace JoinDev.Infra.CrossCutting.Bus
             await _mediator.Publish(@event);
         }
 
-        public async Task<CommandResult> SendCommand<T>(T command) where T : ICommand
+        public async Task<CommandResult> SendCommand<T>(T command) where T : Command
         {
             return await _mediator.Send(command);
         }
