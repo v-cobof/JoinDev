@@ -17,9 +17,9 @@ namespace JoinDev.Domain.Core.Validation.Results
             Errors = new List<ValidationError>();
         }
 
-        public static Task<CommandResult> Successful()
+        public static CommandResult Successful()
         {
-            return Task.FromResult(new CommandResult() { Success = true });
+            return new CommandResult() { Success = true };
         }
 
         public bool IsValid()
