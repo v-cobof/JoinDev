@@ -10,7 +10,7 @@ namespace JoinDev.Application.Pipeline
         {
             if (!request.IsValid())
                 return Task.FromResult((TRes)request.ValidationResult);
-          
+
             return next();
         }
     }

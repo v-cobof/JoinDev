@@ -18,7 +18,7 @@ namespace JoinDev.Application.Pipeline
 
         public async Task<TRes> Handle(TReq request, RequestHandlerDelegate<TRes> next, CancellationToken cancellationToken)
         {
-            if(request.Queued)
+            if (request.Queued)
                 return await next();
 
             var msg = new QueueCommand()
@@ -27,9 +27,9 @@ namespace JoinDev.Application.Pipeline
                 Content = JsonConvert.SerializeObject(request)
             };
 
-            await _bus.Publish(msg);
+            await _bus.Publish(msg, cancellationToken);
 
-            return await Task.FromResult((TRes) CommandResult.Successful());
+            return await Task.FromResult((TRes)CommandResult.Successful());
         }
     }
 }
