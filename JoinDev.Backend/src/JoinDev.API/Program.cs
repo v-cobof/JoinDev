@@ -1,10 +1,3 @@
-using JoinDev.API.Configurations;
-using JoinDev.Domain.Data;
-using JoinDev.Infra.Data;
-using JoinDev.Infra.Data.Repositories;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.DependencyInjection;
-
 namespace JoinDev.API
 {
     public class Program

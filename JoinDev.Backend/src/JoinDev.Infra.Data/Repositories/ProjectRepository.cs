@@ -50,5 +50,15 @@ namespace JoinDev.Infra.Data.Repositories
                 .Include(t => t.InterestedUsers)
                 .ToListAsync();  
         }
+
+        public void CreateTheme(Theme theme)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void UpdateTheme(Theme theme)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

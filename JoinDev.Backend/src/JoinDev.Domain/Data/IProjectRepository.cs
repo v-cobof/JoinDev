@@ -10,10 +10,10 @@ namespace JoinDev.Domain.Data
 {
     public interface IProjectRepository : IRepository<Project>
     {
-        void Create(Project project);
-
-        Task<Project> GetById(Guid id);
-
         Task<IEnumerable<Project>> GetAllProjects();
+
+        void CreateTheme(Theme theme);
+
+        void UpdateTheme(Theme theme);
     }
 }
