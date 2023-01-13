@@ -1,5 +1,4 @@
-﻿using JoinDev.Application.Commands;
-using JoinDev.Domain.Core.Communication;
+﻿using JoinDev.Domain.Core.Communication;
 using JoinDev.Domain.Core.Communication.Messages;
 using JoinDev.Domain.Core.Communication.Messages.Queue;
 using MassTransit;
@@ -21,10 +20,10 @@ namespace JoinDev.Application.Consumers
             var message = context.Message;
             var type = typeof(CommandConsumer).Assembly.GetType($"JoinDev.Application.Commands.{message.MessageType}");
 
-            var command = (IQueueable) JsonConvert.DeserializeObject(message.Content, type);
+            var command = (IQueueable)JsonConvert.DeserializeObject(message.Content, type);
             command.Queued = true;
 
-            _mediator.SendCommand((Command) command);
+            _mediator.SendCommand((Command)command);
 
             return Task.CompletedTask;
         }

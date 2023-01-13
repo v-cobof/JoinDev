@@ -1,5 +1,4 @@
-﻿using JoinDev.Domain.Core.Communication;
-using JoinDev.Domain.Core.Communication.Messages;
+﻿using JoinDev.Domain.Core.Communication.Messages;
 using JoinDev.Domain.Core.Communication.Messages.Queue;
 using JoinDev.Domain.Core.Validation.Results;
 using MassTransit;

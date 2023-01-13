@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace JoinDev.Application.Commands
 {
-    public class CreateUserCommand : Command
+    public class CreateUserCommand : Command, IQueueable
     {
         public string FullName { get; private set; }
         public string NickName { get; private set; }
@@ -17,6 +17,7 @@ namespace JoinDev.Application.Commands
         public string Image { get; private set; }
         public string Email { get; private set; }
         public string Password { get; private set; }
+        public bool Queued { get; set ; }
 
         public CreateUserCommand(string fullName, string nickName, string description, string image, string email, string password)
         {
