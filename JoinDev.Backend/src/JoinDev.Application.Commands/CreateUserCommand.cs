@@ -1,5 +1,4 @@
 ﻿using JoinDev.Application.Commands.Validations;
-using JoinDev.Application.Mappers;
 using JoinDev.Domain.Core.Communication.Messages;
 using System;
 using System.Collections.Generic;
@@ -26,12 +25,6 @@ namespace JoinDev.Application.Commands
             Image = image;
             Email = email;
             Password = password;
-        }
-
-        public override bool IsValid()
-        {
-            ValidationResult = new CreateUserCommandValidation().Validate(this).ToCommandResult();
-            return ValidationResult.IsValid();
         }
     }
 }

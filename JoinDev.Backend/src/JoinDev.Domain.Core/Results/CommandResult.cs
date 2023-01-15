@@ -10,21 +10,14 @@ namespace JoinDev.Domain.Core.Validation.Results
     {
         public bool Success { get; set; }
 
-        public IEnumerable<ValidationError> Errors { get; set; }
-
-        public CommandResult() 
-        {
-            Errors = new List<ValidationError>();
-        }
-
         public static CommandResult Successful()
         {
             return new CommandResult() { Success = true };
         }
 
-        public bool IsValid()
+        public static CommandResult Failure()
         {
-            return !Errors.Any();
+            return new CommandResult() { Success = false };
         }
     }
 }
