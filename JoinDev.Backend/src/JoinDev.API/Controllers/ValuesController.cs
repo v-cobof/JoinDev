@@ -8,6 +8,7 @@ namespace JoinDev.API.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [ApiConventionType(typeof(DefaultApiConventions))]
     public class ValuesController : AbstractController
     {
         private readonly IMediatorHandler _bus;
