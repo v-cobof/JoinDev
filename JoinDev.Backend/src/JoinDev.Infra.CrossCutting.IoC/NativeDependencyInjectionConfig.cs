@@ -1,10 +1,7 @@
 ﻿using JoinDev.Application.Commands;
 using JoinDev.Application.Commands.Handlers;
-using JoinDev.Application.Consumers;
 using JoinDev.Application.Pipeline;
 using JoinDev.Domain.Core.Communication;
-using JoinDev.Domain.Core.Communication.Messages;
-using JoinDev.Domain.Core.Validation.Results;
 using JoinDev.Domain.Data;
 using JoinDev.Infra.CrossCutting.Bus;
 using JoinDev.Infra.Data;
@@ -21,12 +18,11 @@ namespace JoinDev.Infra.CrossCutting.IoC
         public static void RegisterServices(IServiceCollection services)
         {
             // Mediator (In memory bus)
+            services.AddMediatR(typeof(BaseCommandHandler<,>));
             services.AddScoped<IMediatorHandler, MediatorHandler>();
 
             services.AddTransient(typeof(IPipelineBehavior<,>), typeof(ValidationBehaviour<,>));
             services.AddTransient(typeof(IPipelineBehavior<,>), typeof(QueueBehaviour<,>));
-
-            services.AddScoped<IRequestHandler<CreateUserCommand, CommandResult>, UserCommandHandler>();
 
             // Data
             services.AddScoped<IUnitOfWork, UnitOfWork>();
@@ -35,7 +31,7 @@ namespace JoinDev.Infra.CrossCutting.IoC
 
             services.AddMassTransit(x =>
             {
-                var assembly = Assembly.GetAssembly(typeof(CommandConsumer));
+                var assembly = Assembly.GetAssembly(typeof(UserCommandHandler));
 
                 x.AddConsumers(assembly);
 
@@ -43,7 +39,9 @@ namespace JoinDev.Infra.CrossCutting.IoC
                 {
                     cfg.ReceiveEndpoint("commands", e =>
                     {
-                        e.ConfigureConsumer<CommandConsumer>(context);
+                        //e.ConfigureConsumer<CommandConsumer>(context);
+                        //e.ConfigureConsumer<UserCommandHandler>(context);
+                        e.ConfigureConsumers(context);
                     });
                 });
             });

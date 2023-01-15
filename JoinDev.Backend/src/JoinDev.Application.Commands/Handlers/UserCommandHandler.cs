@@ -8,12 +8,10 @@ using System.Threading.Tasks;
 
 namespace JoinDev.Application.Commands.Handlers
 {
-    public class UserCommandHandler : IRequestHandler<CreateUserCommand, CommandResult>
+    public class UserCommandHandler : BaseCommandHandler<CreateUserCommand, CommandResult>
     {
-        public Task<CommandResult> Handle(CreateUserCommand request, CancellationToken cancellationToken)
+        public override Task<CommandResult> Execute(CreateUserCommand request, CancellationToken cancellationToken)
         {
-
-
             return Task.FromResult(CommandResult.Successful());
         }
     }

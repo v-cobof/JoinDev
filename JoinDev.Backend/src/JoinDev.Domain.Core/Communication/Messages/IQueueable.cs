@@ -8,6 +8,6 @@ namespace JoinDev.Domain.Core.Communication.Messages
 {
     public interface IQueueable
     {
-        bool Queued { get; set; }
+
     }
 }
