@@ -12,7 +12,7 @@ namespace JoinDev.Application.Commands.Handlers
 {
     public abstract class BaseCommandHandler<TReq, TRes> : IConsumer<TReq>, IRequestHandler<TReq, TRes> where TReq : Command, IRequest<TRes> where TRes : CommandResult
     {
-        public Task Consume(ConsumeContext<TReq> context)
+        public virtual Task Consume(ConsumeContext<TReq> context)
         {
             return Execute(context.Message, context.CancellationToken);
         }
