@@ -20,12 +20,12 @@ namespace JoinDev.Infra.CrossCutting.Bus
             await _mediator.Publish(@event);
         }
 
-        public async Task PublishNotification<T>(T notification) where T : DomainNotification
+        public async Task PublishNotification<T>(T notification) where T : INotification
         {
             await _mediator.Publish(notification);
         }
 
-        public async Task PublishNotificationsBatch<T>(IEnumerable<T> notifications) where T : DomainNotification
+        public async Task PublishNotificationsBatch<T>(IEnumerable<T> notifications) where T : INotification
         {
             var tasks = notifications.Select(t => PublishNotification(t)).ToList();
 
