@@ -2,6 +2,7 @@
 using JoinDev.Domain.Core.Communication;
 using JoinDev.Domain.Core.Communication.Messages.Notifications;
 using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace JoinDev.API.Controllers
@@ -19,6 +20,7 @@ namespace JoinDev.API.Controllers
         }
 
         [HttpGet]
+        [Authorize(Roles = )]
         public ActionResult GetTeste()
         {
             var command = new CreateUserCommand("joao", "j.c", "ola sou o", null, "jjsj@hotmail.com", "123456");

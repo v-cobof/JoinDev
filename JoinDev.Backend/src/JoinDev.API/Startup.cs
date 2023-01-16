@@ -3,6 +3,7 @@ using JoinDev.Infra.Data;
 using Microsoft.EntityFrameworkCore;
 using MediatR;
 using JoinDev.Application.Commands.Handlers;
+using JoinDev.API.Security;
 
 namespace JoinDev.API
 {
@@ -26,7 +27,8 @@ namespace JoinDev.API
             services.AddEndpointsApiExplorer();
             services.AddSwaggerGen();
 
-            
+            services.AddSecurityConfig(Configuration);
+
             services.AddDependencyInjectionConfiguration();
         }
 
@@ -41,6 +43,7 @@ namespace JoinDev.API
 
             app.UseHttpsRedirection();
 
+            app.UseAuthentication();
             app.UseAuthorization();
 
             app.MapControllers();
