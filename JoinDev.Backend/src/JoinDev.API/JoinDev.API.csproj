@@ -6,6 +6,7 @@
   </PropertyGroup>
 
 	<ItemGroup>
+		<PackageReference Include="MediatR" Version="11.1.0" />
 		<PackageReference Include="Microsoft.AspNetCore.Authentication" Version="2.2.0" />
 		<PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="6.0.13" />
 		<PackageReference Include="Microsoft.EntityFrameworkCore" Version="6.0.12" />
@@ -26,7 +27,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\JoinDev.Infra.CrossCutting.IoC\JoinDev.Infra.CrossCutting.IoC.csproj" />
+    <ProjectReference Include="..\JoinDev.Application.Commands\JoinDev.Application.Commands.csproj" />
     <ProjectReference Include="..\JoinDev.Infra.Data\JoinDev.Infra.Data.csproj" />
   </ItemGroup>
 

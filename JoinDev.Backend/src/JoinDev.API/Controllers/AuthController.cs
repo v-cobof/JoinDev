@@ -1,6 +1,10 @@
 ﻿using JoinDev.API.Security;
+using JoinDev.API.Security.Encryption;
+using JoinDev.API.Security.Token;
+using JoinDev.API.ViewModels;
 using JoinDev.Application;
 using JoinDev.Domain.Core.Communication.Messages.Notifications;
+using JoinDev.Domain.Data;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Options;
@@ -13,45 +17,50 @@ namespace JoinDev.API.Controllers
 {
     public class AuthController : AbstractController
     {
+        private readonly ITokenService _tokenService;
+        private readonly IEncryptionService _encryptionService;
+        private readonly IUnitOfWork _uow;
         private readonly AppSettings _appSettings;
 
         public AuthController(INotificationHandler<DomainNotification> notifications,
-                              IOptions<AppSettings> options) : base(notifications)
+                              ITokenService tokenService,
+                              IEncryptionService encryptionService,
+                              IUnitOfWork uow,
+                              IOptions<AppSettings> options
+        ) : base(notifications)
         {
+            _encryptionService = encryptionService;
+            _tokenService = tokenService;   
+            _uow = uow;
             _appSettings = options.Value;
         }
 
-        public async Task<ActionResult> Authenticate([FromBody] string viewModel)
+        [HttpPost]
+        [Route("login")]
+        public async Task<ActionResult<LoginResponseViewModel>> Login([FromBody] LoginUserViewModel viewModel)
         {
-            // busca usuario
+            var user = await _uow.Users.GetByEmail(viewModel.Email);
 
-            // se nao existir da not found
+            if (user is null) return NotFound();
 
-            // gera o token
-
-            // limpa o campo de senha, e retorna a viewmodel com token
-        }
-
-        private async Task<string> GenerateJwt(string email)
-        {
-            var tokenHandler = new JwtSecurityTokenHandler();
-            var key = Encoding.ASCII.GetBytes(_appSettings.Secret);
-
-            var token = tokenHandler.CreateToken(new SecurityTokenDescriptor
+            if(!_encryptionService.IsEqual(user.UserSecretInfo.Password, viewModel.Password))
             {
-                Subject = new ClaimsIdentity(new[]
+                return Forbid();
+            }
+
+            var email = user.UserSecretInfo.Email;
+            var token = _tokenService.GenerateJwt(email);
+
+            return new LoginResponseViewModel()
+            {
+                AccessToken = token,
+                ExpiresIn = TimeSpan.FromHours(_appSettings.ExpiresInHours).TotalSeconds,
+                UserToken = new UserTokenViewModel()
                 {
-                    new Claim(ClaimTypes.Email, email),
-                }),
-                Issuer = _appSettings.Issuer,
-                Audience = _appSettings.ValidOn,
-                Expires = DateTime.UtcNow.AddHours(_appSettings.ExpiresInHours),
-                SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(key), SecurityAlgorithms.HmacSha256Signature)
-            });;
-
-            var encodedToken = tokenHandler.WriteToken(token);
-
-            return encodedToken;
+                    Email = email,
+                    Id = user.Id.ToString()
+                }
+            };
         }
     }
 }

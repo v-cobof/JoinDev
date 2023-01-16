@@ -13,6 +13,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\JoinDev.API\JoinDev.API.csproj" />
     <ProjectReference Include="..\JoinDev.Application.Commands\JoinDev.Application.Commands.csproj" />
     <ProjectReference Include="..\JoinDev.Application\JoinDev.Application.csproj" />
     <ProjectReference Include="..\JoinDev.Domain.Core\JoinDev.Domain.Core.csproj" />

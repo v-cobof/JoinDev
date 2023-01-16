@@ -20,7 +20,7 @@ namespace JoinDev.API.Controllers
         }
 
         [HttpGet]
-        [Authorize(Roles = )]
+        [Authorize(Roles = "")]
         public ActionResult GetTeste()
         {
             var command = new CreateUserCommand("joao", "j.c", "ola sou o", null, "jjsj@hotmail.com", "123456");

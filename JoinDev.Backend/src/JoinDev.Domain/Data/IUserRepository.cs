@@ -6,6 +6,6 @@ namespace JoinDev.Domain.Data
 {
     public interface IUserRepository : IRepository<User>
     {
-
+        Task<User> GetByEmail(string email);
     }
 }
