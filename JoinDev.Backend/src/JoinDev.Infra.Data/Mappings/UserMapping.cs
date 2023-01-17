@@ -10,6 +10,9 @@ namespace JoinDev.Infra.Data.Mappings
         {
             builder.HasKey(c => c.Id);
 
+            builder.Property(c => c.Name).HasColumnType("varchar(150)");
+            builder.Property(c => c.Description).HasColumnType("varchar(500)");
+
             // 1:N
             builder.HasMany(c => c.Links)
                 .WithOne(c => c.User)
