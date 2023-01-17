@@ -36,12 +36,12 @@ namespace JoinDev.Infra.CrossCutting.IoC
             services.AddScoped<IProjectRepository, ProjectRepository>();
 
             // Fluent Validation
-            services.AddValidatorsFromAssembly(typeof(CreateUserCommandValidation).Assembly);
+            services.AddValidatorsFromAssembly(typeof(RegisterUserCommandValidation).Assembly);
 
             // Mass Transit
             services.AddMassTransit(x =>
             {
-                var assembly = Assembly.GetAssembly(typeof(UserCommandHandler));
+                var assembly = Assembly.GetAssembly(typeof(RegisterUserCommandHandler));
 
                 x.AddConsumers(assembly);
 

@@ -11,13 +11,13 @@ using System.Threading.Tasks;
 
 namespace JoinDev.Application.Commands.Handlers
 {
-    public class UserCommandHandler : BaseCommandHandler<CreateUserCommand, CommandResult>
+    public class RegisterUserCommandHandler : BaseCommandHandler<RegisterUserCommand, CommandResult>
     {
-        public UserCommandHandler(IUnitOfWork uow, IMediatorHandler mediator) : base(uow, mediator)
+        public RegisterUserCommandHandler(IUnitOfWork uow, IMediatorHandler mediator) : base(uow, mediator)
         {
         }
 
-        public async override Task<CommandResult> Execute(CreateUserCommand request, CancellationToken cancellationToken)
+        public async override Task<CommandResult> Execute(RegisterUserCommand request, CancellationToken cancellationToken)
         {
             var user = User.UserFactory.CreateUserToRegister(request.Email, request.FullName, request.Password);
 
