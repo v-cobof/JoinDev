@@ -37,5 +37,10 @@ namespace JoinDev.Infra.Data.Repositories
         {
             _context.Dispose();
         }
+
+        public Task<User> GetByEmail(string email)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

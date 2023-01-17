@@ -10,12 +10,12 @@ namespace JoinDev.Application.Commands
 {
     public class CreateUserCommand : Command, IQueueable
     {
-        public string FullName { get; private set; }
-        public string NickName { get; private set; }
-        public string Description { get; private set; }
-        public string Image { get; private set; }
-        public string Email { get; private set; }
-        public string Password { get; private set; }
+        public string FullName { get; set; }
+        public string NickName { get; set; }
+        public string Description { get; set; }
+        public string Image { get; set; }
+        public string Email { get; set; }
+        public string Password { get; set; }
 
         public CreateUserCommand(string fullName, string nickName, string description, string image, string email, string password)
         {
@@ -26,5 +26,7 @@ namespace JoinDev.Application.Commands
             Email = email;
             Password = password;
         }
+
+        public CreateUserCommand() { }
     }
 }

@@ -3,6 +3,8 @@ using JoinDev.API.Security.Encryption;
 using JoinDev.API.Security.Token;
 using JoinDev.API.ViewModels;
 using JoinDev.Application;
+using JoinDev.Application.Commands;
+using JoinDev.Domain.Core.Communication;
 using JoinDev.Domain.Core.Communication.Messages.Notifications;
 using JoinDev.Domain.Data;
 using MediatR;
@@ -21,18 +23,32 @@ namespace JoinDev.API.Controllers
         private readonly IEncryptionService _encryptionService;
         private readonly IUnitOfWork _uow;
         private readonly AppSettings _appSettings;
+        private readonly IMediatorHandler _mediatorHandler;
 
         public AuthController(INotificationHandler<DomainNotification> notifications,
                               ITokenService tokenService,
                               IEncryptionService encryptionService,
                               IUnitOfWork uow,
-                              IOptions<AppSettings> options
+                              IOptions<AppSettings> options,
+                              IMediatorHandler mediator
         ) : base(notifications)
         {
             _encryptionService = encryptionService;
             _tokenService = tokenService;   
             _uow = uow;
             _appSettings = options.Value;
+            _mediatorHandler = mediator;
+        }
+
+        [HttpPost]
+        [Route("register")]
+        public async Task<ActionResult> Register([FromBody] CreateUserCommand command)
+        {
+            command.Password = _encryptionService.Encrypt(command.Password);
+
+            var result = _mediatorHandler.SendCommand(command);
+
+            return CustomResponse(await result);
         }
 
         [HttpPost]

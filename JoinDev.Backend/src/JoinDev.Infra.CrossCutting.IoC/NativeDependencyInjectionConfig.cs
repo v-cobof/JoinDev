@@ -14,8 +14,6 @@ using MassTransit;
 using MediatR;
 using Microsoft.Extensions.DependencyInjection;
 using System.Reflection;
-using JoinDev.API.Security.Token;
-using JoinDev.API.Security.Encryption;
 
 namespace JoinDev.Infra.CrossCutting.IoC
 {
@@ -57,10 +55,6 @@ namespace JoinDev.Infra.CrossCutting.IoC
                     });
                 });
             });
-
-            services.AddScoped<ITokenService, TokenService>();
-
-            services.AddScoped<IEncryptionService, EncryptionService>();
         }
     }
 }

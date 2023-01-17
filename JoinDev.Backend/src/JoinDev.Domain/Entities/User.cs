@@ -38,5 +38,16 @@ namespace JoinDev.Domain.Entities
         // EF
         protected User() { }     
         
+        public static class UserFactory
+        {
+            public static User CreateUserToRegister(string email, string name, string password)
+            {
+                return new User()
+                {
+                    FullName = name,
+                    UserSecretInfo = new UserSecretInfo(email, password)
+                };
+            }
+        }
     }
 }

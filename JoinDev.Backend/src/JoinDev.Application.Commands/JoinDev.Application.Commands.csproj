@@ -15,6 +15,7 @@
 
 	<ItemGroup>
 		<ProjectReference Include="..\JoinDev.Domain.Core\JoinDev.Domain.Core.csproj" />
+		<ProjectReference Include="..\JoinDev.Domain\JoinDev.Domain.csproj" />
 	</ItemGroup>
 
 </Project>

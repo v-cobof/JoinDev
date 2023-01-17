@@ -9,5 +9,11 @@ namespace JoinDev.Domain.Entities
         public string Password { get; private set; }
 
         public User User { get; private set; }
+
+        public UserSecretInfo(string email, string password)
+        {
+            Email = email;
+            Password = password;
+        }
     }
 }
