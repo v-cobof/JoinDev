@@ -29,9 +29,9 @@ namespace JoinDev.Application.Commands.Handlers
             return Execute(context.Message, context.CancellationToken);
         }
 
-        public Task<TRes> Handle(TReq request, CancellationToken cancellationToken)
+        public async Task<TRes> Handle(TReq request, CancellationToken cancellationToken)
         {
-            return Execute(request, cancellationToken);
+            return await Execute(request, cancellationToken);
         }
 
         public abstract Task<TRes> Execute(TReq request, CancellationToken cancellationToken);

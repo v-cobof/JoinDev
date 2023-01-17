@@ -2,7 +2,7 @@
 
 namespace JoinDev.Application.Commands
 {
-    public class RegisterUserCommand : Command, IQueueable
+    public class RegisterUserCommand : Command
     {
         public string FullName { get; set; }
         public string Email { get; set; }

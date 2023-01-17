@@ -41,13 +41,7 @@ namespace JoinDev.Infra.Data.Repositories
 
         public async Task<User> GetByEmail(string email)
         {
-            var info = await _context.UsersSecretInfo
-                .Include(t => t.User)
-                .FirstOrDefaultAsync(t => t.Email == email);
-
-            if(info is not null) return info.User;
-
-            return default;
+            return await _context.Users.FirstOrDefaultAsync(t => t.Email == email);
         }
     }
 }

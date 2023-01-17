@@ -59,12 +59,12 @@ namespace JoinDev.API.Controllers
 
             if (user is null) return NotFound();
 
-            if(!_encryptionService.IsEqual(user.UserSecretInfo.Password, viewModel.Password))
+            if(!_encryptionService.IsEqual(user.Password, viewModel.Password))
             {
                 return Forbid();
             }
 
-            var email = user.UserSecretInfo.Email;
+            var email = user.Email;
             var token = _tokenService.GenerateJwt(email);
 
             return new LoginResponseViewModel()

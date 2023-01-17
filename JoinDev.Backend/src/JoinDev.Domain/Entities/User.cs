@@ -7,7 +7,8 @@ namespace JoinDev.Domain.Entities
         public string Name { get; private set; }
         public string Description { get; private set; }
         public string Image { get; private set; }
-        public UserSecretInfo UserSecretInfo { get; private set; }
+        public string Email { get; private set; }
+        public string Password { get; private set; }
 
         // EF - 1:N
         private List<UserLink> _links;
@@ -30,7 +31,8 @@ namespace JoinDev.Domain.Entities
             Name = name;            
             Description = description;
             _links = links;
-            UserSecretInfo = new UserSecretInfo(email, password);
+            Email = email;
+            Password = password;
         }
 
         // EF
@@ -43,7 +45,8 @@ namespace JoinDev.Domain.Entities
                 return new User()
                 {
                     Name = name,
-                    UserSecretInfo = new UserSecretInfo(email, password)
+                    Password = password,
+                    Email = email
                 };
             }
         }
