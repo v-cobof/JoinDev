@@ -28,13 +28,6 @@ namespace JoinDev.API.Controllers
             }));
         }
 
-        protected ActionResult CustomResponse(CommandResult result)
-        {
-            if (result.Success) return Ok();
-
-            return BadRequest();
-        }
-
         protected bool IsOperationValid()
         {
             return !_notificationHandler.HasNotification();

@@ -23,7 +23,7 @@ namespace JoinDev.API.Controllers
         [Authorize(Roles = "")]
         public ActionResult GetTeste()
         {
-            var command = new CreateUserCommand("joao", "j.c", "ola sou o", null, "jjsj@hotmail.com", "123456");
+            var command = new RegisterUserCommand("joao", "jjsj@hotmail.com", "123456");
 
             var result = _bus.SendCommand(command);
 

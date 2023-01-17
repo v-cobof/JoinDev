@@ -10,14 +10,21 @@ namespace JoinDev.Domain.Core.Validation.Results
     {
         public bool Success { get; set; }
 
+        public CommandResult(bool success)
+        {
+            Success = success;
+        }
+
         public static CommandResult Successful()
         {
-            return new CommandResult() { Success = true };
+            return new CommandResult(true);
         }
 
         public static CommandResult Failure()
         {
-            return new CommandResult() { Success = false };
+            return new CommandResult(false);
         }
+
+        public static implicit operator CommandResult(bool success) => new(success);
     }
 }

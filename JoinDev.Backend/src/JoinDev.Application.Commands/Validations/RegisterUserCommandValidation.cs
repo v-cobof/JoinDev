@@ -16,7 +16,7 @@ namespace JoinDev.Application.Commands.Validations
 
             RuleFor(t => t.Email).UserEmailRule();
 
-            RuleFor(t => t.Password).UserEmailRule();
+            RuleFor(t => t.Password).UserPasswordRule();
         }
     }
 }

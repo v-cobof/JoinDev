@@ -42,7 +42,7 @@ namespace JoinDev.API.Controllers
 
         [HttpPost]
         [Route("register")]
-        public async Task<ActionResult> Register([FromBody] CreateUserCommand command)
+        public async Task<ActionResult> Register([FromBody] RegisterUserCommand command)
         {
             command.Password = _encryptionService.Encrypt(command.Password);
 

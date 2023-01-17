@@ -1,6 +1,7 @@
 ﻿using JoinDev.Domain.Core.Data;
 using JoinDev.Domain.Data;
 using JoinDev.Domain.Entities;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -38,9 +39,15 @@ namespace JoinDev.Infra.Data.Repositories
             _context.Dispose();
         }
 
-        public Task<User> GetByEmail(string email)
+        public async Task<User> GetByEmail(string email)
         {
-            throw new NotImplementedException();
+            var info = await _context.UsersSecretInfo
+                .Include(t => t.User)
+                .FirstOrDefaultAsync(t => t.Email == email);
+
+            if(info is not null) return info.User;
+
+            return default;
         }
     }
 }
