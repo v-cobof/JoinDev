@@ -18,21 +18,21 @@ namespace JoinDev.API.Controllers
         private readonly IEncryptionService _encryptionService;
         private readonly IUnitOfWork _uow;
         private readonly AppSettings _appSettings;
-        private readonly IMediatorHandler _mediatorHandler;
+        private readonly IBusHandler _bus;
 
         public AuthController(INotificationHandler<DomainNotification> notifications,
                               ITokenService tokenService,
                               IEncryptionService encryptionService,
                               IUnitOfWork uow,
                               IOptions<AppSettings> options,
-                              IMediatorHandler mediator
+                              IBusHandler bus
         ) : base(notifications)
         {
             _encryptionService = encryptionService;
             _tokenService = tokenService;   
             _uow = uow;
             _appSettings = options.Value;
-            _mediatorHandler = mediator;
+            _bus = bus;
         }
 
         [HttpPost]
@@ -41,7 +41,7 @@ namespace JoinDev.API.Controllers
         {
             command.Password = _encryptionService.Encrypt(command.Password);
 
-            var result = _mediatorHandler.SendCommand(command);
+            var result = _bus.SendCommand(command);
 
             return CustomResponse(await result);
         }

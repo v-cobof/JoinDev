@@ -16,12 +16,12 @@ namespace JoinDev.Application.Commands.Handlers
     public abstract class BaseCommandHandler<TReq, TRes> : IConsumer<TReq>, IRequestHandler<TReq, TRes> where TReq : Command, IRequest<TRes> where TRes : CommandResult
     {
         protected readonly IUnitOfWork _uow;
-        protected readonly IMediatorHandler _mediator;
+        protected readonly IBusHandler _bus;
 
-        public BaseCommandHandler(IUnitOfWork uow, IMediatorHandler mediator)
+        public BaseCommandHandler(IUnitOfWork uow, IBusHandler bus)
         {
             _uow = uow;
-            _mediator = mediator;
+            _bus = bus;
         }
 
         public virtual Task Consume(ConsumeContext<TReq> context)
@@ -40,7 +40,7 @@ namespace JoinDev.Application.Commands.Handlers
         {
             var notification = new DomainNotification(command.MessageType, message);
 
-            await _mediator.PublishNotification(notification);
+            await _bus.PublishNotification(notification);
         }
     }
 }

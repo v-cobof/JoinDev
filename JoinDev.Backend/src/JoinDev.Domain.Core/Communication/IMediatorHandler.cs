@@ -5,7 +5,7 @@ using MediatR;
 
 namespace JoinDev.Domain.Core.Communication
 {
-    public interface IMediatorHandler
+    public interface IBusHandler
     {
         Task PublishEvent<T>(T @event) where T : Event;
 

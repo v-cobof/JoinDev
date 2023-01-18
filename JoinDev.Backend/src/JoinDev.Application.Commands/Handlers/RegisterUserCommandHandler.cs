@@ -13,7 +13,7 @@ namespace JoinDev.Application.Commands.Handlers
 {
     public class RegisterUserCommandHandler : BaseCommandHandler<RegisterUserCommand, CommandResult>
     {
-        public RegisterUserCommandHandler(IUnitOfWork uow, IMediatorHandler mediator) : base(uow, mediator)
+        public RegisterUserCommandHandler(IUnitOfWork uow, IBusHandler bus) : base(uow, bus)
         {
         }
 

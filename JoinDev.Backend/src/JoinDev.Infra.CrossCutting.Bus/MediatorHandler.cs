@@ -6,7 +6,7 @@ using MediatR;
 
 namespace JoinDev.Infra.CrossCutting.Bus
 {
-    public class MediatorHandler : IMediatorHandler
+    public class MediatorHandler : IBusHandler
     {
         private readonly IMediator _mediator;
 

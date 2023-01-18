@@ -1,4 +1,5 @@
-﻿using JoinDev.Domain.Data;
+﻿using JoinDev.Domain.Core.Communication;
+using JoinDev.Domain.Data;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,12 +14,14 @@ namespace JoinDev.Infra.Data
 
         private readonly IUserRepository _userRepository;
         private readonly IProjectRepository _projectRepository;
+        private readonly IBusHandler _bus;
 
-        public UnitOfWork(JoinDevContext context, IUserRepository userRepository, IProjectRepository projectRepository)
+        public UnitOfWork(JoinDevContext context, IUserRepository userRepository, IProjectRepository projectRepository, IBusHandler bus)
         {
             _context = context;
             _userRepository = userRepository;
             _projectRepository = projectRepository;
+            _bus = bus;
         }
 
         public IUserRepository Users => _userRepository;
@@ -26,7 +29,11 @@ namespace JoinDev.Infra.Data
 
         public async Task<bool> Commit()
         {
-            return await _context.SaveChangesAsync() > 0;
+            var sucesso = await _context.SaveChangesAsync() > 0;
+
+            if (sucesso) await _bus.PublishEntityEvents(_context);
+
+            return sucesso;
         }
     }
 }

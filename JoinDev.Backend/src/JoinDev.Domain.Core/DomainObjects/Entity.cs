@@ -1,15 +1,36 @@
-﻿namespace JoinDev.Domain.Core.DomainObjects
+﻿using JoinDev.Domain.Core.Communication.Messages;
+
+namespace JoinDev.Domain.Core.DomainObjects
 {
     public abstract class Entity
     {
         public Guid Id { get; }
         public DateTime Timestamp { get; }
 
+        private List<Event> _events;
+        public IReadOnlyCollection<Event> Events => _events?.AsReadOnly();
+
         public Entity()
         {
             Id = Guid.NewGuid();
             Timestamp = DateTime.UtcNow;
-        }       
+        }
+
+        public void AddEvent(Event eventItem)
+        {
+            _events = _events ?? new List<Event>();
+            _events.Add(eventItem);
+        }
+
+        public void RemoverEvent(Event eventItem)
+        {
+            _events?.Remove(eventItem);
+        }
+
+        public void ClearEvents()
+        {
+            _events?.Clear();
+        }
 
         public override bool Equals(object obj)
         {
