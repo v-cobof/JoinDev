@@ -20,9 +20,9 @@ namespace JoinDev.Application.Commands.Handlers
         public async override Task<CommandResult> Execute(RegisterUserCommand request, CancellationToken cancellationToken)
         {
             var user = User.UserFactory.CreateUserToRegister(request.Email, request.FullName, request.Password);
-            var registeredUser = await _uow.Users.GetByEmail(request.Email);
+            var registeredUser = _uow.Users.GetByEmail(request.Email);
 
-            if (registeredUser is not null)
+            if (await registeredUser is not null)
             {
                 await Notify(request, "The user e-mail has already been taken.");
 

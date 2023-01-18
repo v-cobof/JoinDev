@@ -1,4 +1,5 @@
-﻿using JoinDev.Domain.Entities;
+﻿using JoinDev.Domain.Core.Communication.Messages;
+using JoinDev.Domain.Entities;
 using JoinDev.Infra.Data.Extensions;
 using Microsoft.EntityFrameworkCore;
 
@@ -36,6 +37,9 @@ namespace JoinDev.Infra.Data
                 .ConfigureTablePerTypeForProjectHierarchy();
 
             foreach (var relationship in modelBuilder.Model.GetEntityTypes().SelectMany(e => e.GetForeignKeys())) relationship.DeleteBehavior = DeleteBehavior.ClientSetNull;
+
+            modelBuilder.Ignore<Event>();
+            modelBuilder.Ignore<IEnumerable<Event>>();
 
             base.OnModelCreating(modelBuilder);
         }
