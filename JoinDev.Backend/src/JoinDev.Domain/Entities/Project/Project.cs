@@ -9,27 +9,26 @@ namespace JoinDev.Domain.Entities
         public string Title { get; private set; }
         public string PublicDescription { get; private set; }
         public int TotalSpots { get; private set; }
-        public int AvailableSpots => TotalSpots - _memberUsers.Count;
         public ProjectStatus ProjectStatus { get; private set; }
+        public Guid CreatorId { get; private set; }
+        public ProjectRestrictedInfo ProjectRestrictedInfo { get; private set; }
+        public int AvailableSpots => TotalSpots - _memberUsers.Count;
 
-        // EF - N:N - Theme
+
+        public User Creator { get; private set; }
+
+
         private List<Theme> _themes;
         public IReadOnlyCollection<Theme> Themes => _themes;
 
-        // EF - 1:1 - ProjectRestrictedInfo
-        public ProjectRestrictedInfo ProjectRestrictedInfo { get; private set; }
 
-        // EF - 1:N - User
-        public Guid CreatorId { get; private set; }
-        public User Creator { get; private set; }
-
-        // EF - N:N - User
         private readonly List<User> _memberUsers;
         public IReadOnlyCollection<User> MemberUsers => _memberUsers;
 
-        // EF - N:N - User
+
         private readonly List<User> _interestedUsers;
         public IReadOnlyCollection<User> InterestedUsers => _interestedUsers;
+
 
         public Project(string title, string publicDescription, int totalSpots, List<Theme> themes, Guid creatorId)
         {

@@ -10,21 +10,22 @@ namespace JoinDev.Domain.Entities
         public string Email { get; private set; }
         public string Password { get; private set; }
 
-        // EF - 1:N
+
         private List<UserLink> _links;
         public IReadOnlyCollection<UserLink> Links => _links;
 
-        // EF - N:N - Project
+
         private readonly List<Project> _projectsAsMember;
         public IReadOnlyCollection<Project> ProjectsAsMember => _projectsAsMember;
 
-        // EF - N:N - Project
+
         private readonly List<Project> _projectsAsInterested;
         public IReadOnlyCollection<Project> ProjectsAsInterested => _projectsAsInterested;
 
-        // EF - 1:N - Project
+
         private readonly List<Project> _projectsAsCreator;
         public IReadOnlyCollection<Project> ProjectsAsCreator => _projectsAsCreator;
+
 
         public User(string name, string description, List<UserLink> links, string email, string password)
         {

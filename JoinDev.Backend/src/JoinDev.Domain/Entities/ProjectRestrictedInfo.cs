@@ -14,9 +14,10 @@ namespace JoinDev.Domain.Entities
         public Guid ProjectId { get; private set; }
         public Project Project { get; private set; }
 
-        // EF - 1:N
+
         private List<ProjectLink> _links;
         public IReadOnlyCollection<ProjectLink> Links => _links;
+
 
         public ProjectRestrictedInfo(string description, Guid projectId, List<ProjectLink> links)
         {

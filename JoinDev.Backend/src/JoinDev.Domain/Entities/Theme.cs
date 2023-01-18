@@ -12,10 +12,9 @@ namespace JoinDev.Domain.Entities
     public class Theme : Entity
     {
         public string Name { get; private set; }
-
         public ThemeCategory ThemeCategory { get; private set; }
 
-        // EF - N:N - Project
+
         private List<Project> _projects;
         public IReadOnlyCollection<Project> Projects => _projects;
 
