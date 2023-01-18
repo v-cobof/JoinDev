@@ -2,7 +2,6 @@
 using JoinDev.API.Security.Encryption;
 using JoinDev.API.Security.Token;
 using JoinDev.API.ViewModels;
-using JoinDev.Application;
 using JoinDev.Application.Commands;
 using JoinDev.Domain.Core.Communication;
 using JoinDev.Domain.Core.Communication.Messages.Notifications;
@@ -10,10 +9,6 @@ using JoinDev.Domain.Data;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Options;
-using Microsoft.IdentityModel.Tokens;
-using System.IdentityModel.Tokens.Jwt;
-using System.Security.Claims;
-using System.Text;
 
 namespace JoinDev.API.Controllers
 {

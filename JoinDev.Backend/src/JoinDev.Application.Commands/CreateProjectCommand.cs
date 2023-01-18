@@ -1,17 +1,17 @@
-﻿using JoinDev.Domain.Core.Communication.Messages;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using JoinDev.Application.Commands.Dto;
+using JoinDev.Domain.Core.Communication.Messages;
 
 namespace JoinDev.Application.Commands
 {
     public class CreateProjectCommand : Command
     {
-        public string Title { get; private set; }
-        public string PublicDescription { get; private set; }
-        public int TotalSpots { get; private set; }
-        public Guid CreatorId { get; private set; }
+        public string Title { get; set; }
+        public string PublicDescription { get; set; }
+        public int TotalSpots { get; set; }
+        public Guid CreatorId { get; set; }
+
+        public string PrivateDescription { get; set; }
+        public List<ThemeDto> Themes { get; set; }
+        public List<LinkDto> Links { get; set; }
     }
 }

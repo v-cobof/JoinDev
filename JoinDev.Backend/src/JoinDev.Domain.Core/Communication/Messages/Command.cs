@@ -5,6 +5,5 @@ namespace JoinDev.Domain.Core.Communication.Messages
 {
     public abstract class Command : Message, IRequest<CommandResult>
     {
-        public Command() { }
     }
 }
