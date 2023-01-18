@@ -2,6 +2,7 @@
 using JoinDev.Domain.Core.Validation.Results;
 using JoinDev.Domain.Data;
 using JoinDev.Domain.Entities;
+using JoinDev.Domain.Events;
 using MediatR;
 using System;
 using System.Collections.Generic;
@@ -19,7 +20,7 @@ namespace JoinDev.Application.Commands.Handlers
 
         public async override Task<CommandResult> Execute(RegisterUserCommand request, CancellationToken cancellationToken)
         {
-            var user = User.UserFactory.CreateUserToRegister(request.Email, request.FullName, request.Password);
+            var user = User.UserFactory.CreateUserToRegister(request.Email, request.Name, request.Password);
             var registeredUser = _uow.Users.GetByEmail(request.Email);
 
             if (await registeredUser is not null)
@@ -29,7 +30,7 @@ namespace JoinDev.Application.Commands.Handlers
                 return CommandResult.Failure();
             }
 
-            // adicionar domain event na entidade
+            user.AddEvent(new UserRegisteredEvent(user.Id, user.Name, user.Email, user.Password));           
 
             _uow.Users.Create(user);
 

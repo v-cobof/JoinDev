@@ -12,7 +12,7 @@ namespace JoinDev.Application.Commands.Validations
     {
         public RegisterUserCommandValidation()
         {
-            RuleFor(t => t.FullName).UserNameRule();
+            RuleFor(t => t.Name).UserNameRule();
 
             RuleFor(t => t.Email).UserEmailRule();
 

@@ -18,15 +18,18 @@ namespace JoinDev.Application.Commands.Handlers
         protected readonly IUnitOfWork _uow;
         protected readonly IBusHandler _bus;
 
+        protected ConsumeContext<TReq> _context;
+
         public BaseCommandHandler(IUnitOfWork uow, IBusHandler bus)
         {
             _uow = uow;
             _bus = bus;
         }
 
-        public virtual Task Consume(ConsumeContext<TReq> context)
+        public Task Consume(ConsumeContext<TReq> context)
         {
-            return Execute(context.Message, context.CancellationToken);
+            _context = context;
+            return Execute(_context.Message, _context.CancellationToken);
         }
 
         public async Task<TRes> Handle(TReq request, CancellationToken cancellationToken)
