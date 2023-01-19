@@ -4,6 +4,7 @@ using Microsoft.EntityFrameworkCore;
 using MediatR;
 using JoinDev.Application.Commands.Handlers;
 using JoinDev.API.Security;
+using JoinDev.Infra.Data.Read;
 
 namespace JoinDev.API
 {
@@ -22,6 +23,10 @@ namespace JoinDev.API
 
             services.AddDbContext<JoinDevContext>(options =>
                 options.UseSqlServer(connectionString));
+
+            var mongoDbSettings = Configuration.GetSection("MongoDB");
+            services.Configure<ReadDatabaseSettings>(mongoDbSettings);
+            services.AddScoped<MongoDbContext>();
 
             services.AddControllers();
             services.AddEndpointsApiExplorer();

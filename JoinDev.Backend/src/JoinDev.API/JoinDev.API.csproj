@@ -29,6 +29,7 @@
   <ItemGroup>
     <ProjectReference Include="..\JoinDev.Application.Commands\JoinDev.Application.Commands.csproj" />
     <ProjectReference Include="..\JoinDev.Infra.CrossCutting.IoC\JoinDev.Infra.CrossCutting.IoC.csproj" />
+    <ProjectReference Include="..\JoinDev.Infra.Data.Read\JoinDev.Infra.Data.Read.csproj" />
     <ProjectReference Include="..\JoinDev.Infra.Data\JoinDev.Infra.Data.csproj" />
   </ItemGroup>
 
