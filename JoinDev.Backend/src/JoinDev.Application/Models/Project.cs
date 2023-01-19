@@ -4,10 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace JoinDev.Application.Data
+namespace JoinDev.Application.Models
 {
-    public interface IReplicationRepository<T>
+    public class Project
     {
-        Task Create(T model);
     }
 }

@@ -3,12 +3,14 @@ using JoinDev.Application;
 using JoinDev.Application.Commands;
 using JoinDev.Application.Commands.Handlers;
 using JoinDev.Application.Commands.Validations;
+using JoinDev.Application.Data;
 using JoinDev.Application.Pipeline;
 using JoinDev.Domain.Core.Communication;
 using JoinDev.Domain.Core.Communication.Messages.Notifications;
 using JoinDev.Domain.Data;
 using JoinDev.Infra.CrossCutting.Bus;
 using JoinDev.Infra.Data;
+using JoinDev.Infra.Data.Read;
 using JoinDev.Infra.Data.Repositories;
 using MassTransit;
 using MediatR;
@@ -23,7 +25,7 @@ namespace JoinDev.Infra.CrossCutting.IoC
         {
             // Mediator (In memory bus)
             services.AddMediatR(typeof(BaseCommandHandler<,>));
-            services.AddScoped<IBusHandler, MediatorHandler>();
+            services.AddScoped<IBusHandler, BusHandler>();
 
             services.AddTransient(typeof(IPipelineBehavior<,>), typeof(ValidationBehaviour<,>));
             services.AddTransient(typeof(IPipelineBehavior<,>), typeof(QueueBehaviour<,>));
@@ -34,6 +36,8 @@ namespace JoinDev.Infra.CrossCutting.IoC
             services.AddScoped<IUnitOfWork, UnitOfWork>();
             services.AddScoped<IUserRepository, UserRepository>();
             services.AddScoped<IProjectRepository, ProjectRepository>();
+
+            services.AddScoped(typeof(IReplicationRepository<>), typeof(ReplicationRepository<>));
 
             // Fluent Validation
             services.AddValidatorsFromAssembly(typeof(RegisterUserCommandValidation).Assembly);

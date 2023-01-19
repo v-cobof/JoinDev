@@ -23,7 +23,7 @@ namespace JoinDev.Infra.Data
             domainEntities.ToList()
                 .ForEach(entity => entity.Entity.ClearEvents());
 
-            await bus.PublishNotificationsBatch(domainEvents);
+            await bus.PublishEventsBatch(domainEvents);
         }
     }
 }

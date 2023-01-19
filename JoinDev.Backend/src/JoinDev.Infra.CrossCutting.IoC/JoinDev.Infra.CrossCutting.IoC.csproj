@@ -18,6 +18,7 @@
     <ProjectReference Include="..\JoinDev.Domain.Core\JoinDev.Domain.Core.csproj" />
     <ProjectReference Include="..\JoinDev.Domain\JoinDev.Domain.csproj" />
     <ProjectReference Include="..\JoinDev.Infra.CrossCutting.Bus\JoinDev.Infra.CrossCutting.Bus.csproj" />
+    <ProjectReference Include="..\JoinDev.Infra.Data.Read\JoinDev.Infra.Data.Read.csproj" />
     <ProjectReference Include="..\JoinDev.Infra.Data\JoinDev.Infra.Data.csproj" />
   </ItemGroup>
 

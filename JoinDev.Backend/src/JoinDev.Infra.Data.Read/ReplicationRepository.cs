@@ -13,9 +13,9 @@ namespace JoinDev.Infra.Data.Read
             _context = context;
         }
 
-        public void Create(T model)
+        public async Task Create(T model)
         {
-            
+            await _collection.InsertOneAsync(model);
         }
     }
 }

@@ -1,20 +1,19 @@
-﻿using JoinDev.Application.Events.Base;
+﻿using JoinDev.Application.Data;
+using JoinDev.Application.Models;
 using JoinDev.Domain.Events;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using MassTransit;
 
 namespace JoinDev.Application.Events
 {
-    public class UserRegisteredEventHandler : BaseDataReplicationEventHandler<UserRegisteredEvent>
+    public class UserRegisteredEventHandler : BaseDataReplicationEventHandler<UserRegisteredEvent, User>
     {
-        public override Task Execute(UserRegisteredEvent notification, CancellationToken cancellationToken)
+        public UserRegisteredEventHandler(IReplicationRepository<User> repository) : base(repository)
         {
-            throw new NotImplementedException();
         }
 
-
+        public override Task Consume(ConsumeContext<UserRegisteredEvent> context)
+        {
+            
+        }
     }
 }

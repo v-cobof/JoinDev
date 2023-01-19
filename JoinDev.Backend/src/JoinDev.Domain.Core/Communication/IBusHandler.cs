@@ -11,8 +11,10 @@ namespace JoinDev.Domain.Core.Communication
 
         Task<CommandResult> SendCommand<T>(T command) where T : Command;
 
-        Task PublishNotification<T>(T notificacao) where T : INotification;
+        Task PublishNotification<T>(T notificacao) where T : DomainNotification;
 
-        Task PublishNotificationsBatch<T>(IEnumerable<T> notifications) where T : INotification;
+        Task PublishNotificationsBatch<T>(IEnumerable<T> notifications) where T : DomainNotification;
+
+        Task PublishEventsBatch<T>(IEnumerable<T> notifications) where T : Event;
     }
 }
