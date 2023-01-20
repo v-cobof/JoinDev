@@ -10,20 +10,6 @@ namespace JoinDev.Infra.Data.Migrations
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
-                name: "Links",
-                columns: table => new
-                {
-                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    Name = table.Column<string>(type: "varchar(100)", nullable: true),
-                    Url = table.Column<string>(type: "varchar(100)", nullable: true),
-                    LinkSource = table.Column<int>(type: "int", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Links", x => x.Id);
-                });
-
-            migrationBuilder.CreateTable(
                 name: "Themes",
                 columns: table => new
                 {
@@ -69,28 +55,6 @@ namespace JoinDev.Infra.Data.Migrations
                     table.ForeignKey(
                         name: "FK_Projects_Users_CreatorId",
                         column: x => x.CreatorId,
-                        principalTable: "Users",
-                        principalColumn: "Id");
-                });
-
-            migrationBuilder.CreateTable(
-                name: "UserLinks",
-                columns: table => new
-                {
-                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    UserId = table.Column<Guid>(type: "uniqueidentifier", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_UserLinks", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_UserLinks_Links_Id",
-                        column: x => x.Id,
-                        principalTable: "Links",
-                        principalColumn: "Id");
-                    table.ForeignKey(
-                        name: "FK_UserLinks_Users_UserId",
-                        column: x => x.UserId,
                         principalTable: "Users",
                         principalColumn: "Id");
                 });
@@ -215,24 +179,27 @@ namespace JoinDev.Infra.Data.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "ProjectLinks",
+                name: "Links",
                 columns: table => new
                 {
-                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    ProjectRestrictedInfoId = table.Column<Guid>(type: "uniqueidentifier", nullable: false)
+                    AggregateId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    Url = table.Column<string>(type: "varchar(100)", nullable: false),
+                    Name = table.Column<string>(type: "varchar(100)", nullable: true),
+                    LinkSource = table.Column<int>(type: "int", nullable: false),
+                    LinkType = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_ProjectLinks", x => x.Id);
+                    table.PrimaryKey("PK_Links", x => new { x.AggregateId, x.Url });
                     table.ForeignKey(
-                        name: "FK_ProjectLinks_Links_Id",
-                        column: x => x.Id,
-                        principalTable: "Links",
+                        name: "FK_Links_ProjectsRestrictedInfo_AggregateId",
+                        column: x => x.AggregateId,
+                        principalTable: "ProjectsRestrictedInfo",
                         principalColumn: "Id");
                     table.ForeignKey(
-                        name: "FK_ProjectLinks_ProjectsRestrictedInfo_ProjectRestrictedInfoId",
-                        column: x => x.ProjectRestrictedInfoId,
-                        principalTable: "ProjectsRestrictedInfo",
+                        name: "FK_Links_Users_AggregateId",
+                        column: x => x.AggregateId,
+                        principalTable: "Users",
                         principalColumn: "Id");
                 });
 
@@ -245,11 +212,6 @@ namespace JoinDev.Infra.Data.Migrations
                 name: "IX_MembersInProjects_ProjectsAsMemberId",
                 table: "MembersInProjects",
                 column: "ProjectsAsMemberId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_ProjectLinks_ProjectRestrictedInfoId",
-                table: "ProjectLinks",
-                column: "ProjectRestrictedInfoId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Projects_CreatorId",
@@ -266,11 +228,6 @@ namespace JoinDev.Infra.Data.Migrations
                 name: "IX_ProjectTheme_ThemesId",
                 table: "ProjectTheme",
                 column: "ThemesId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_UserLinks_UserId",
-                table: "UserLinks",
-                column: "UserId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
@@ -282,10 +239,10 @@ namespace JoinDev.Infra.Data.Migrations
                 name: "JobProjects");
 
             migrationBuilder.DropTable(
-                name: "MembersInProjects");
+                name: "Links");
 
             migrationBuilder.DropTable(
-                name: "ProjectLinks");
+                name: "MembersInProjects");
 
             migrationBuilder.DropTable(
                 name: "ProjectTheme");
@@ -294,16 +251,10 @@ namespace JoinDev.Infra.Data.Migrations
                 name: "StudyProjects");
 
             migrationBuilder.DropTable(
-                name: "UserLinks");
-
-            migrationBuilder.DropTable(
                 name: "ProjectsRestrictedInfo");
 
             migrationBuilder.DropTable(
                 name: "Themes");
-
-            migrationBuilder.DropTable(
-                name: "Links");
 
             migrationBuilder.DropTable(
                 name: "Projects");

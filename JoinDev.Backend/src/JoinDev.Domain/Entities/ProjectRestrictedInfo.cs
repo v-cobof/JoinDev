@@ -1,5 +1,6 @@
 ﻿using JoinDev.Domain.Core.DomainObjects;
 using JoinDev.Domain.Core.Validation;
+using JoinDev.Domain.ValueObjects;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,15 +12,16 @@ namespace JoinDev.Domain.Entities
     public class ProjectRestrictedInfo : Entity
     {
         public string Description { get; private set; }
+
         public Guid ProjectId { get; private set; }
         public Project Project { get; private set; }
 
 
-        private List<ProjectLink> _links;
-        public IReadOnlyCollection<ProjectLink> Links => _links;
+        private List<Link> _links;
+        public IReadOnlyCollection<Link> Links => _links;
 
 
-        public ProjectRestrictedInfo(string description, Guid projectId, List<ProjectLink> links)
+        public ProjectRestrictedInfo(string description, Guid projectId, List<Link> links)
         {
             Description = description;
             ProjectId = projectId;

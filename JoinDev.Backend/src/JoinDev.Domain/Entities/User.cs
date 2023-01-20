@@ -1,4 +1,5 @@
 ﻿using JoinDev.Domain.Core.DomainObjects;
+using JoinDev.Domain.ValueObjects;
 
 namespace JoinDev.Domain.Entities
 {
@@ -11,8 +12,8 @@ namespace JoinDev.Domain.Entities
         public string Password { get; private set; }
 
 
-        private List<UserLink> _links;
-        public IReadOnlyCollection<UserLink> Links => _links;
+        private List<Link> _links;
+        public IReadOnlyCollection<Link> Links => _links;
 
 
         private readonly List<Project> _projectsAsMember;
@@ -27,7 +28,7 @@ namespace JoinDev.Domain.Entities
         public IReadOnlyCollection<Project> ProjectsAsCreator => _projectsAsCreator;
 
 
-        public User(string name, string description, List<UserLink> links, string email, string password)
+        public User(string name, string description, List<Link> links, string email, string password)
         {
             Name = name;            
             Description = description;

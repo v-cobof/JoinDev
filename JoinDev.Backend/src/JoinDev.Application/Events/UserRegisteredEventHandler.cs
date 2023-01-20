@@ -5,15 +5,24 @@ using MassTransit;
 
 namespace JoinDev.Application.Events
 {
-    public class UserRegisteredEventHandler : BaseDataReplicationEventHandler<UserRegisteredEvent, User>
+    public class UserRegisteredEventHandler : BaseDataReplicationEventHandler<UserRegisteredEvent, UserModel>
     {
-        public UserRegisteredEventHandler(IReplicationRepository<User> repository) : base(repository)
+        public UserRegisteredEventHandler(IReplicationRepository<UserModel> repository) : base(repository)
         {
         }
 
-        public override Task Consume(ConsumeContext<UserRegisteredEvent> context)
+        public async override Task Consume(ConsumeContext<UserRegisteredEvent> context)
         {
-            
+            var msg = context.Message;
+
+            var user = new UserModel()
+            {
+                Id = msg.AggregateId,
+                Name = msg.Name,
+                Email = msg.Email,
+            };
+
+            await _repository.Create(user);
         }
     }
 }

@@ -4,10 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace JoinDev.Application.Commands.Dto
+namespace JoinDev.Application.Models
 {
-    public class LinkDto
+    public class ThemeModel
     {
-
     }
 }

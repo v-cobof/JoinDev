@@ -1,5 +1,6 @@
 ﻿using JoinDev.Domain.Core.Communication.Messages;
 using JoinDev.Domain.Entities;
+using JoinDev.Domain.ValueObjects;
 using JoinDev.Infra.Data.Extensions;
 using Microsoft.EntityFrameworkCore;
 
@@ -21,8 +22,6 @@ namespace JoinDev.Infra.Data
         public DbSet<User> Users { get; set; }
 
         public DbSet<Link> Links { get; set; }
-        public DbSet<ProjectLink> ProjectLinks { get; set; }
-        public DbSet<UserLink> UserLinks { get; set; }
 
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -33,7 +32,6 @@ namespace JoinDev.Infra.Data
 
             modelBuilder
                 .ApplyConfigurationsFromAssembly(typeof(JoinDevContext).Assembly)
-                .ConfigureTablePerTypeForLinkHierarchy()
                 .ConfigureTablePerTypeForProjectHierarchy();
 
             foreach (var relationship in modelBuilder.Model.GetEntityTypes().SelectMany(e => e.GetForeignKeys())) relationship.DeleteBehavior = DeleteBehavior.ClientSetNull;

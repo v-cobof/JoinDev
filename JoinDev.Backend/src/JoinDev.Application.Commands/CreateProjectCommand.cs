@@ -1,4 +1,4 @@
-﻿using JoinDev.Application.Commands.Dto;
+﻿using JoinDev.Application.Models;
 using JoinDev.Domain.Core.Communication.Messages;
 
 namespace JoinDev.Application.Commands
@@ -11,7 +11,7 @@ namespace JoinDev.Application.Commands
         public Guid CreatorId { get; set; }
 
         public string PrivateDescription { get; set; }
-        public List<ThemeDto> Themes { get; set; }
-        public List<LinkDto> Links { get; set; }
+        public List<ThemeModel> Themes { get; set; }
+        public List<LinkModel> Links { get; set; }
     }
 }

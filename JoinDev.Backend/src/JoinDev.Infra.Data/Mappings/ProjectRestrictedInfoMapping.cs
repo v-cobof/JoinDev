@@ -16,9 +16,8 @@ namespace JoinDev.Infra.Data.Mappings
                 .HasForeignKey<ProjectRestrictedInfo>(c => c.ProjectId);
 
             builder.HasMany(c => c.Links)
-                .WithOne(c => c.ProjectRestrictedInfo)
-                .HasForeignKey(c => c.ProjectRestrictedInfoId);
-
+                .WithOne()
+                .HasForeignKey(t => t.AggregateId);
 
             builder.ToTable("ProjectsRestrictedInfo");
         }

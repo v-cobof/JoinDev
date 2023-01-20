@@ -30,7 +30,7 @@ namespace JoinDev.Application.Commands.Handlers
                 return CommandResult.Failure();
             }
 
-            user.AddEvent(new UserRegisteredEvent(user.Id, user.Name, user.Email, user.Password));           
+            user.AddEvent(new UserRegisteredEvent(user.Id, user.Name, user.Email));           
 
             _uow.Users.Create(user);
 

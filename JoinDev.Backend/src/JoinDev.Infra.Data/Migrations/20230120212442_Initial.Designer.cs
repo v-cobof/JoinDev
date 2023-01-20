@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace JoinDev.Infra.Data.Migrations
 {
     [DbContext(typeof(JoinDevContext))]
-    [Migration("20230118220806_Initial")]
+    [Migration("20230120212442_Initial")]
     partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -23,26 +23,6 @@ namespace JoinDev.Infra.Data.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder, 1L, 1);
-
-            modelBuilder.Entity("JoinDev.Domain.Entities.Link", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<int>("LinkSource")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Name")
-                        .HasColumnType("varchar(100)");
-
-                    b.Property<string>("Url")
-                        .HasColumnType("varchar(100)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Links", (string)null);
-                });
 
             modelBuilder.Entity("JoinDev.Domain.Entities.Project", b =>
                 {
@@ -135,6 +115,28 @@ namespace JoinDev.Infra.Data.Migrations
                     b.ToTable("Users", (string)null);
                 });
 
+            modelBuilder.Entity("JoinDev.Domain.ValueObjects.Link", b =>
+                {
+                    b.Property<Guid>("AggregateId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("Url")
+                        .HasColumnType("varchar(100)");
+
+                    b.Property<int>("LinkSource")
+                        .HasColumnType("int");
+
+                    b.Property<int>("LinkType")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Name")
+                        .HasColumnType("varchar(100)");
+
+                    b.HasKey("AggregateId", "Url");
+
+                    b.ToTable("Links", (string)null);
+                });
+
             modelBuilder.Entity("ProjectTheme", b =>
                 {
                     b.Property<Guid>("ProjectsId")
@@ -193,18 +195,6 @@ namespace JoinDev.Infra.Data.Migrations
                     b.ToTable("JobProjects", (string)null);
                 });
 
-            modelBuilder.Entity("JoinDev.Domain.Entities.ProjectLink", b =>
-                {
-                    b.HasBaseType("JoinDev.Domain.Entities.Link");
-
-                    b.Property<Guid>("ProjectRestrictedInfoId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.HasIndex("ProjectRestrictedInfoId");
-
-                    b.ToTable("ProjectLinks", (string)null);
-                });
-
             modelBuilder.Entity("JoinDev.Domain.Entities.StudyProject", b =>
                 {
                     b.HasBaseType("JoinDev.Domain.Entities.Project");
@@ -213,18 +203,6 @@ namespace JoinDev.Infra.Data.Migrations
                         .HasColumnType("int");
 
                     b.ToTable("StudyProjects", (string)null);
-                });
-
-            modelBuilder.Entity("JoinDev.Domain.Entities.UserLink", b =>
-                {
-                    b.HasBaseType("JoinDev.Domain.Entities.Link");
-
-                    b.Property<Guid>("UserId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.HasIndex("UserId");
-
-                    b.ToTable("UserLinks", (string)null);
                 });
 
             modelBuilder.Entity("JoinDev.Domain.Entities.Project", b =>
@@ -245,6 +223,19 @@ namespace JoinDev.Infra.Data.Migrations
                         .IsRequired();
 
                     b.Navigation("Project");
+                });
+
+            modelBuilder.Entity("JoinDev.Domain.ValueObjects.Link", b =>
+                {
+                    b.HasOne("JoinDev.Domain.Entities.ProjectRestrictedInfo", null)
+                        .WithMany("Links")
+                        .HasForeignKey("AggregateId")
+                        .IsRequired();
+
+                    b.HasOne("JoinDev.Domain.Entities.User", null)
+                        .WithMany("Links")
+                        .HasForeignKey("AggregateId")
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("ProjectTheme", b =>
@@ -295,22 +286,6 @@ namespace JoinDev.Infra.Data.Migrations
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("JoinDev.Domain.Entities.ProjectLink", b =>
-                {
-                    b.HasOne("JoinDev.Domain.Entities.Link", null)
-                        .WithOne()
-                        .HasForeignKey("JoinDev.Domain.Entities.ProjectLink", "Id")
-                        .OnDelete(DeleteBehavior.ClientCascade)
-                        .IsRequired();
-
-                    b.HasOne("JoinDev.Domain.Entities.ProjectRestrictedInfo", "ProjectRestrictedInfo")
-                        .WithMany("Links")
-                        .HasForeignKey("ProjectRestrictedInfoId")
-                        .IsRequired();
-
-                    b.Navigation("ProjectRestrictedInfo");
-                });
-
             modelBuilder.Entity("JoinDev.Domain.Entities.StudyProject", b =>
                 {
                     b.HasOne("JoinDev.Domain.Entities.Project", null)
@@ -318,22 +293,6 @@ namespace JoinDev.Infra.Data.Migrations
                         .HasForeignKey("JoinDev.Domain.Entities.StudyProject", "Id")
                         .OnDelete(DeleteBehavior.ClientCascade)
                         .IsRequired();
-                });
-
-            modelBuilder.Entity("JoinDev.Domain.Entities.UserLink", b =>
-                {
-                    b.HasOne("JoinDev.Domain.Entities.Link", null)
-                        .WithOne()
-                        .HasForeignKey("JoinDev.Domain.Entities.UserLink", "Id")
-                        .OnDelete(DeleteBehavior.ClientCascade)
-                        .IsRequired();
-
-                    b.HasOne("JoinDev.Domain.Entities.User", "User")
-                        .WithMany("Links")
-                        .HasForeignKey("UserId")
-                        .IsRequired();
-
-                    b.Navigation("User");
                 });
 
             modelBuilder.Entity("JoinDev.Domain.Entities.Project", b =>

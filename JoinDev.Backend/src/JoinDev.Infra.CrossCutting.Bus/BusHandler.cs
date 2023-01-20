@@ -25,7 +25,11 @@ namespace JoinDev.Infra.CrossCutting.Bus
 
         public async Task PublishEventsBatch<T>(IEnumerable<T> events) where T : Domain.Core.Communication.Messages.Event
         {
-            await _bus.PublishBatch(events);
+            //await _bus.PublishBatch(events);
+
+            var tasks = events.Select(t => PublishEvent(t)).ToList();
+
+            await Task.WhenAll(tasks);
         }
 
         public async Task PublishNotification<T>(T notification) where T : DomainNotification

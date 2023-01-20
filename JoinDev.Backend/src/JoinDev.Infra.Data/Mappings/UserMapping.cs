@@ -15,9 +15,8 @@ namespace JoinDev.Infra.Data.Mappings
 
             // 1:N
             builder.HasMany(c => c.Links)
-                .WithOne(c => c.User)
-                .HasForeignKey(c => c.UserId);
-
+                .WithOne()
+                .HasForeignKey(c => c.AggregateId);
 
             builder.ToTable("Users");
         }

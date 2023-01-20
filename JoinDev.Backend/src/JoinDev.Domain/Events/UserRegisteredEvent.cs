@@ -6,14 +6,12 @@ namespace JoinDev.Domain.Events
     {
         public string Name { get; set; }
         public string Email { get; set; }
-        public string Password { get; set; }
 
-        public UserRegisteredEvent(Guid aggregateId, string fullName, string email, string password)
+        public UserRegisteredEvent(Guid aggregateId, string fullName, string email)
         {
             AggregateId = aggregateId;
             Name = fullName;
             Email = email;
-            Password = password;
         }
     }
 }

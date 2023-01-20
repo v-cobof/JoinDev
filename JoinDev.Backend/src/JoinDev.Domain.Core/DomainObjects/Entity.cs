@@ -22,7 +22,7 @@ namespace JoinDev.Domain.Core.DomainObjects
             _events.Add(eventItem);
         }
 
-        public void RemoverEvent(Event eventItem)
+        public void RemoveEvent(Event eventItem)
         {
             _events?.Remove(eventItem);
         }
