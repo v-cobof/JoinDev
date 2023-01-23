@@ -14,7 +14,7 @@ namespace JoinDev.Application.Events
         {
             var user = new UserModel()
             {
-                Id = message.AggregateId,
+                _id = message.AggregateId,
                 Name = message.Name,
                 Email = message.Email,
             };
