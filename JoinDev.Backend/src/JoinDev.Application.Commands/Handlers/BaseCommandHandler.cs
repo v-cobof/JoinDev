@@ -3,8 +3,8 @@ using JoinDev.Domain.Core.Communication.Messages;
 using JoinDev.Domain.Core.Communication.Messages.Notifications;
 using JoinDev.Domain.Core.Validation.Results;
 using JoinDev.Domain.Data;
-using MassTransit;
 using MediatR;
+using Rebus.Handlers;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,12 +13,10 @@ using System.Threading.Tasks;
 
 namespace JoinDev.Application.Commands.Handlers
 {
-    public abstract class BaseCommandHandler<TReq, TRes> : IConsumer<TReq>, IRequestHandler<TReq, TRes> where TReq : Command, IRequest<TRes> where TRes : CommandResult
+    public abstract class BaseCommandHandler<TReq, TRes> : IHandleMessages<TReq>, IRequestHandler<TReq, TRes> where TReq : Command, IRequest<TRes> where TRes : CommandResult
     {
         protected readonly IUnitOfWork _uow;
         protected readonly IBusHandler _bus;
-
-        protected ConsumeContext<TReq> _context;
 
         public BaseCommandHandler(IUnitOfWork uow, IBusHandler bus)
         {
@@ -26,18 +24,17 @@ namespace JoinDev.Application.Commands.Handlers
             _bus = bus;
         }
 
-        public Task Consume(ConsumeContext<TReq> context)
+        public async Task Handle(TReq message)
         {
-            _context = context;
-            return Execute(_context.Message, _context.CancellationToken);
+            await Execute(message);
         }
 
         public async Task<TRes> Handle(TReq request, CancellationToken cancellationToken)
         {
-            return await Execute(request, cancellationToken);
+            return await Execute(request);
         }
 
-        public abstract Task<TRes> Execute(TReq request, CancellationToken cancellationToken);
+        public abstract Task<TRes> Execute(TReq request);
 
         protected async Task Notify(Command command, string message)
         {

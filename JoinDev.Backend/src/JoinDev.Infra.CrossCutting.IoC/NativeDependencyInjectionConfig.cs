@@ -12,7 +12,6 @@ using JoinDev.Infra.CrossCutting.Bus;
 using JoinDev.Infra.Data;
 using JoinDev.Infra.Data.Read;
 using JoinDev.Infra.Data.Repositories;
-using MassTransit;
 using MediatR;
 using Microsoft.Extensions.DependencyInjection;
 using System.Reflection;
@@ -41,24 +40,6 @@ namespace JoinDev.Infra.CrossCutting.IoC
 
             // Fluent Validation
             services.AddValidatorsFromAssembly(typeof(RegisterUserCommandValidation).Assembly);
-
-            // Mass Transit
-            services.AddMassTransit(x =>
-            {
-                var assembly = Assembly.GetAssembly(typeof(RegisterUserCommandHandler));
-
-                x.AddConsumers(assembly);
-
-                x.UsingInMemory((context, cfg) =>
-                {
-                    cfg.ReceiveEndpoint("commands", e =>
-                    {
-                        //e.ConfigureConsumer<CommandConsumer>(context);
-                        //e.ConfigureConsumer<UserCommandHandler>(context);
-                        e.ConfigureConsumers(context);
-                    });
-                });
-            });
         }
     }
 }

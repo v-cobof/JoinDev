@@ -1,7 +1,6 @@
 ﻿using JoinDev.Application.Data;
 using JoinDev.Application.Models;
 using JoinDev.Domain.Events;
-using MassTransit;
 
 namespace JoinDev.Application.Events
 {
@@ -11,15 +10,13 @@ namespace JoinDev.Application.Events
         {
         }
 
-        public async override Task Consume(ConsumeContext<UserRegisteredEvent> context)
+        public async override Task Handle(UserRegisteredEvent message)
         {
-            var msg = context.Message;
-
             var user = new UserModel()
             {
-                Id = msg.AggregateId,
-                Name = msg.Name,
-                Email = msg.Email,
+                Id = message.AggregateId,
+                Name = message.Name,
+                Email = message.Email,
             };
 
             await _repository.Create(user);

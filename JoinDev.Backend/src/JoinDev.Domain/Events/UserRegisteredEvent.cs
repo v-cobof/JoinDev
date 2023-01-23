@@ -7,11 +7,13 @@ namespace JoinDev.Domain.Events
         public string Name { get; set; }
         public string Email { get; set; }
 
-        public UserRegisteredEvent(Guid aggregateId, string fullName, string email)
+        public UserRegisteredEvent(Guid aggregateId, string name, string email)
         {
             AggregateId = aggregateId;
-            Name = fullName;
+            Name = name;
             Email = email;
         }
+
+        protected UserRegisteredEvent() { }
     }
 }

@@ -18,7 +18,7 @@ namespace JoinDev.Application.Commands.Handlers
         {
         }
 
-        public async override Task<CommandResult> Execute(RegisterUserCommand request, CancellationToken cancellationToken)
+        public async override Task<CommandResult> Execute(RegisterUserCommand request)
         {
             var user = User.UserFactory.CreateUserToRegister(request.Email, request.Name, request.Password);
             var registeredUser = _uow.Users.GetByEmail(request.Email);
@@ -30,7 +30,7 @@ namespace JoinDev.Application.Commands.Handlers
                 return CommandResult.Failure();
             }
 
-            user.AddEvent(new UserRegisteredEvent(user.Id, user.Name, user.Email));           
+            user.AddEvent(new UserRegisteredEvent(user.Id, user.Name, user.Email));
 
             _uow.Users.Create(user);
 

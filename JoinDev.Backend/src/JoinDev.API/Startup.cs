@@ -28,6 +28,8 @@ namespace JoinDev.API
             services.Configure<ReadDatabaseSettings>(mongoDbSettings);
             services.AddScoped<MongoDbContext>();
 
+            services.AddBusConfiguration();
+
             services.AddControllers();
             services.AddEndpointsApiExplorer();
             services.AddSwaggerGen();
