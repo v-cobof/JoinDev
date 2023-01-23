@@ -6,7 +6,7 @@ namespace JoinDev.Infra.Data.Read
     public class ReplicationRepository<T> : IReplicationRepository<T>
     {
         private readonly MongoDbContext _context;
-        private IMongoCollection<T> _collection => _context.Database.GetCollection<T>(nameof(T));
+        private IMongoCollection<T> _collection => _context.Database.GetCollection<T>(typeof(T).Name);
 
         public ReplicationRepository(MongoDbContext context)
         {

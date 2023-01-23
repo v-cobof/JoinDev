@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace JoinDev.Application.Models
 {
-    public class ThemeModel
+    public class ThemeModel : BaseModel
     {
     }
 }

@@ -1,10 +1,11 @@
 ﻿using JoinDev.API.Configurations;
 using JoinDev.Infra.Data;
 using Microsoft.EntityFrameworkCore;
-using MediatR;
-using JoinDev.Application.Commands.Handlers;
 using JoinDev.API.Security;
 using JoinDev.Infra.Data.Read;
+using MongoDB.Bson.Serialization;
+using MongoDB.Bson.Serialization.Serializers;
+using MongoDB.Bson;
 
 namespace JoinDev.API
 {
@@ -19,14 +20,8 @@ namespace JoinDev.API
 
         public void ConfigureServices(IServiceCollection services)
         {
-            var connectionString = Configuration.GetConnectionString("DefaultConnection");
-
-            services.AddDbContext<JoinDevContext>(options =>
-                options.UseSqlServer(connectionString));
-
-            var mongoDbSettings = Configuration.GetSection("MongoDB");
-            services.Configure<ReadDatabaseSettings>(mongoDbSettings);
-            services.AddScoped<MongoDbContext>();
+            services.ConfigureWriteDatabase(Configuration);
+            services.ConfigureReadDatabase(Configuration);
 
             services.AddBusConfiguration();
 

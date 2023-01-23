@@ -2,7 +2,7 @@
 {
     public class ReadDatabaseSettings
     {
-        public string ConnectionURI { get; set; } = null!;
-        public string DatabaseName { get; set; } = null!;
+        public string ConnectionURI { get; set; }
+        public string DatabaseName { get; set; }
     }
 }

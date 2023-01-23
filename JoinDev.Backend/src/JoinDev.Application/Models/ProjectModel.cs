@@ -1,13 +1,6 @@
-﻿using MongoDB.Bson;
-using MongoDB.Bson.Serialization.Attributes;
-
-namespace JoinDev.Application.Models
+﻿namespace JoinDev.Application.Models
 {
-    public class ProjectModel
+    public class ProjectModel : BaseModel
     {
-        [BsonId]
-        public ObjectId _id { get; }
-
-
     }
 }

@@ -3,9 +3,8 @@ using JoinDev.Domain.Entities;
 
 namespace JoinDev.Application.Models
 {
-    public class UserModel
+    public class UserModel : BaseModel
     {
-        public Guid _id { get; set; }
         public string Name { get; set; }
         public string Description { get; set; }
         public string Image { get; set; }
