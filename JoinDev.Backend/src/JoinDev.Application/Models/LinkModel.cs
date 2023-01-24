@@ -7,28 +7,28 @@ namespace JoinDev.Application.Models
     {
         public string Name { get; set; }
         public string Url { get; set; }
-        public LinkSource LinkSource { get; set; }
-        public LinkType LinkType { get; private set; }
+        public LinkSource? Source { get; set; }
+        public LinkType? Type { get; private set; }
 
         public static implicit operator LinkModel(Link link)
         {
             return new LinkModel()
             {
                 Url = link.Url,
-                LinkSource = link.LinkSource,
-                LinkType = link.LinkType,
+                Source = link.LinkSource,
+                Type = link.LinkType,
                 Name = link.Name
             };
         }
 
         public void SetAsUserLink()
         {
-            LinkType = LinkType.UserLink;
+            Type = LinkType.UserLink;
         }
 
         public void SetAsProjectLink()
         {
-            LinkType = LinkType.ProjectLink;
+            Type = LinkType.ProjectLink;
         }
     }
 }
