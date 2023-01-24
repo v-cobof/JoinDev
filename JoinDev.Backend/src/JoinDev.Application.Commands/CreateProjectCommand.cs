@@ -8,10 +8,10 @@ namespace JoinDev.Application.Commands
         public string Title { get; set; }
         public string PublicDescription { get; set; }
         public int TotalSpots { get; set; }
-        public Guid CreatorId { get; set; }
+        public string CreatorId { get; set; }
 
-        public string PrivateDescription { get; set; }
-        public List<ThemeModel> Themes { get; set; }
+        public string RestrictedDescription { get; set; }
+        public List<string> ThemesIds { get; set; }
         public List<LinkModel> Links { get; set; }
     }
 }

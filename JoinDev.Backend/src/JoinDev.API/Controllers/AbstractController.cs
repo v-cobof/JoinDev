@@ -1,4 +1,5 @@
 ﻿using JoinDev.Application;
+using JoinDev.Domain.Core.Communication;
 using JoinDev.Domain.Core.Communication.Messages.Notifications;
 using JoinDev.Domain.Core.Validation.Results;
 using MediatR;
@@ -8,11 +9,13 @@ namespace JoinDev.API.Controllers
 {
     public abstract class AbstractController : ControllerBase
     {
-        private readonly DomainNotificationHandler _notificationHandler;
+        protected readonly DomainNotificationHandler _notificationHandler;
+        protected readonly IBusHandler _bus;
 
-        public AbstractController(INotificationHandler<DomainNotification> notifications)
+        public AbstractController(INotificationHandler<DomainNotification> notifications, IBusHandler bus)
         {
             _notificationHandler = notifications as DomainNotificationHandler;
+            _bus = bus;
         }
 
         protected ActionResult CustomResponse(object result = null)

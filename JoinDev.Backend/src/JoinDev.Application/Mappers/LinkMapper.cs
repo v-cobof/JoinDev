@@ -17,5 +17,13 @@ namespace JoinDev.Application.Mappers
                 yield return link;
             }
         }
+
+        public static void SetAsUserLinks(this IEnumerable<LinkModel> links)
+        {
+            foreach (var link in links)
+            {
+                link.SetAsUserLink();
+            }
+        }
     }
 }

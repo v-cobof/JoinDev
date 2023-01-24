@@ -18,7 +18,6 @@ namespace JoinDev.API.Controllers
         private readonly IEncryptionService _encryptionService;
         private readonly IUnitOfWork _uow;
         private readonly AppSettings _appSettings;
-        private readonly IBusHandler _bus;
 
         public AuthController(INotificationHandler<DomainNotification> notifications,
                               ITokenService tokenService,
@@ -26,13 +25,12 @@ namespace JoinDev.API.Controllers
                               IUnitOfWork uow,
                               IOptions<AppSettings> options,
                               IBusHandler bus
-        ) : base(notifications)
+        ) : base(notifications, bus)
         {
             _encryptionService = encryptionService;
             _tokenService = tokenService;   
             _uow = uow;
             _appSettings = options.Value;
-            _bus = bus;
         }
 
         [HttpPost]

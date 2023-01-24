@@ -30,7 +30,7 @@ namespace JoinDev.API.Security.Token
                 Audience = _appSettings.ValidOn,
                 Expires = DateTime.UtcNow.AddHours(_appSettings.ExpiresInHours),
                 SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(key), SecurityAlgorithms.HmacSha256Signature)
-            }); ;
+            });
 
             var encodedToken = tokenHandler.WriteToken(token);
 
