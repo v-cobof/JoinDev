@@ -53,12 +53,17 @@ namespace JoinDev.Infra.Data.Repositories
 
         public void CreateTheme(Theme theme)
         {
-            throw new NotImplementedException();
+            _context.Themes.Add(theme);
         }
 
         public void UpdateTheme(Theme theme)
         {
             throw new NotImplementedException();
+        }
+
+        public async Task<Theme> GetThemeByName(string name)
+        {
+            return await _context.Themes.FirstOrDefaultAsync(t => t.Name == name);
         }
     }
 }

@@ -9,8 +9,4 @@
     <ProjectReference Include="..\JoinDev.Domain.Core\JoinDev.Domain.Core.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Events\" />
-  </ItemGroup>
-
 </Project>

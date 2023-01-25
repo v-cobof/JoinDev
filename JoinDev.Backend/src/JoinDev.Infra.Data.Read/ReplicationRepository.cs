@@ -17,5 +17,10 @@ namespace JoinDev.Infra.Data.Read
         {
             await _collection.InsertOneAsync(model);
         }
+
+        public Task Update(T model)
+        {
+            throw new Exception();
+        }
     }
 }

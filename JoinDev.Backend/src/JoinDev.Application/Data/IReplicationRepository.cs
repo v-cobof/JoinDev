@@ -9,5 +9,7 @@ namespace JoinDev.Application.Data
     public interface IReplicationRepository<T>
     {
         Task Create(T model);
+
+        Task Update(T model); 
     }
 }

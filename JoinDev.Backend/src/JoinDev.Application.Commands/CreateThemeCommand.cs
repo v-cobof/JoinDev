@@ -11,6 +11,6 @@ namespace JoinDev.Application.Commands
     public class CreateThemeCommand : Command
     {
         public string Name { get; set; }
-        public ThemeCategory ThemeCategory { get; set; }
+        public ThemeCategory? ThemeCategory { get; set; }
     }
 }
