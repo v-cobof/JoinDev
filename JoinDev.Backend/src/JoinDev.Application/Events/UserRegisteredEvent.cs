@@ -1,6 +1,7 @@
-﻿using JoinDev.Domain.Core.Communication.Messages;
+﻿using JoinDev.Application.Models;
+using JoinDev.Domain.Core.Communication.Messages;
 
-namespace JoinDev.Domain.Events
+namespace JoinDev.Application.Events
 {
     public class UserRegisteredEvent : Event
     {

@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace JoinDev.Application.Events
+namespace JoinDev.Application.Events.Handlers
 {
     public abstract class BaseDataReplicationEventHandler<TEvent, TModel> : IHandleMessages<TEvent> where TEvent : Domain.Core.Communication.Messages.Event
     {

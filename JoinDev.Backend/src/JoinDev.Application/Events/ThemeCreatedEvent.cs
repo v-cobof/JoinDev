@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace JoinDev.Domain.Events
+namespace JoinDev.Application.Events
 {
     public class ThemeCreatedEvent : Event
     {

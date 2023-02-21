@@ -1,8 +1,8 @@
 ﻿using JoinDev.Application.Data;
 using JoinDev.Application.Models;
-using JoinDev.Domain.Events;
+using JoinDev.Application.Events;
 
-namespace JoinDev.Application.Events
+namespace JoinDev.Application.Events.Handlers
 {
     public class UserRegisteredEventHandler : BaseDataReplicationEventHandler<UserRegisteredEvent, UserModel>
     {

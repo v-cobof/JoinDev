@@ -2,13 +2,7 @@
 using JoinDev.Domain.Core.Validation.Results;
 using JoinDev.Domain.Data;
 using JoinDev.Domain.Entities;
-using JoinDev.Domain.Events;
-using MediatR;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using JoinDev.Application.Events;
 
 namespace JoinDev.Application.Commands.Handlers
 {

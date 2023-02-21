@@ -2,6 +2,7 @@
 using JoinDev.Domain.Core.Validation.Results;
 using JoinDev.Domain.Data;
 using JoinDev.Domain.Entities;
+using JoinDev.Application.Events;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -33,12 +34,11 @@ namespace JoinDev.Application.Commands.Handlers
                 return CommandResult.Failure();
             }
 
-            theme.AddEvent()
+            theme.AddEvent(new ThemeCreatedEvent());
             
-            _uow.Users.Create(user);
+            _uow.Projects.CreateTheme(theme);
 
             return await _uow.Commit();
-
         }
     }
 }
