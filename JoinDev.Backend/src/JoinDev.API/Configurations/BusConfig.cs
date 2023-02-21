@@ -1,8 +1,8 @@
 ﻿using JoinDev.Application.Commands;
 using JoinDev.Application.Commands.Handlers;
 using JoinDev.Application.Events;
+using JoinDev.Application.Events.Handlers;
 using JoinDev.Domain.Core.Communication.Messages;
-using JoinDev.Domain.Events;
 using Rebus.Bus;
 using Rebus.Config;
 using Rebus.Persistence.InMem;
@@ -21,7 +21,7 @@ namespace JoinDev.API.Configurations
 
             services.AddRebus(configure => configure
                 .Transport(t => t.UseInMemoryTransport(new InMemNetwork(true), defaultQueue))
-                //.Transport(t => t.UseRabbitMq("amqp://localhost", ))
+                //.Transport(t => t.UseRabbitMq("amqp://localhost", defaultQueue))
                 .Routing(r =>
                 {
                     r.TypeBased()
