@@ -17,7 +17,7 @@ namespace JoinDev.Application.Pipeline
 
         public async Task<TRes> Handle(TReq request, RequestHandlerDelegate<TRes> next, CancellationToken cancellationToken)
         {
-            await _bus.Send(request);
+            await _bus.Publish(request);
 
             return await Task.FromResult((TRes)CommandResult.Successful());
         }

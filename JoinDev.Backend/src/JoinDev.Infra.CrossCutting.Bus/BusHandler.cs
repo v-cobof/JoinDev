@@ -20,7 +20,7 @@ namespace JoinDev.Infra.CrossCutting.Bus
 
         public async Task PublishEvent<T>(T @event) where T : Domain.Core.Communication.Messages.Event
         {
-            await _bus.Publish(@event);
+            await _bus.Publish(@event, @event.GetType());
         }
 
         public async Task PublishEventsBatch<T>(IEnumerable<T> events) where T : Domain.Core.Communication.Messages.Event

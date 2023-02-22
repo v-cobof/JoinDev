@@ -4,6 +4,7 @@ using JoinDev.Application.Events;
 using JoinDev.Application.Events.Handlers;
 using JoinDev.Domain.Core.Communication.Messages;
 using MassTransit;
+using MediatR;
 
 namespace JoinDev.API.Configurations
 {
@@ -13,13 +14,15 @@ namespace JoinDev.API.Configurations
         {
             services.AddMassTransit(x =>
             {
-                //x.AddConsumer<UpdateGameRankConsumer>();
-
-                // Set endpoint name construction with kebab case
+                x.AddConsumersFromNamespaceContaining<UserRegisteredEventHandler>();
+                x.AddConsumersFromNamespaceContaining<RegisterUserCommandHandler>();
                 x.SetKebabCaseEndpointNameFormatter();
 
                 x.UsingRabbitMq((context, rabbit) =>
                 {
+                    rabbit.Publish<INotification>(p => p.Exclude = true);
+                    rabbit.Publish<Message>(p => p.Exclude = true);
+
                     //rabbit.UseMessageRetry(x => x.Interval(2, 1000));
 
                     rabbit.Host("localhost", "/", h =>
@@ -30,8 +33,12 @@ namespace JoinDev.API.Configurations
 
                     rabbit.ReceiveEndpoint("commands-queue", endpoint =>
                     {
-                        // Sets the consumer to be used for the endpoint
-                        endpoint.Consumer(t => t.Message<>)
+                        endpoint.ConfigureConsumer<RegisterUserCommandHandler>(context);
+                    });
+
+                    rabbit.ReceiveEndpoint("events-queue", endpoint =>
+                    {
+                        endpoint.ConfigureConsumer<UserRegisteredEventHandler>(context);
                     });
                 });
             });
