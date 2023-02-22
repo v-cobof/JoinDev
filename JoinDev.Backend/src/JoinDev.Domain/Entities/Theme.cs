@@ -13,6 +13,7 @@ namespace JoinDev.Domain.Entities
     {
         public string Name { get; private set; }
         public ThemeCategory ThemeCategory { get; private set; }
+        public Guid ThemeCategoryId { get; private set; }
 
 
         private List<Project> _projects;

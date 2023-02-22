@@ -14,7 +14,7 @@ namespace JoinDev.Application.Commands.Validations
         {
             RuleFor(c => c.Name).ThemeNameRule();
 
-            RuleFor(c => c.ThemeCategory).ThemeCategoryRule();
+            RuleFor(c => c.ThemeCategoryId).ThemeCategoryRule();
         }
     }
 }

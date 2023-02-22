@@ -7,7 +7,7 @@ namespace JoinDev.Application.Models
     {
         public string Name { get; set; }
         public string Url { get; set; }
-        public LinkSource? Source { get; set; }
+        public Guid LinkSourceId { get; set; }
         public LinkType? Type { get; private set; }
 
         public static implicit operator LinkModel(Link link)
@@ -15,7 +15,7 @@ namespace JoinDev.Application.Models
             return new LinkModel()
             {
                 Url = link.Url,
-                Source = link.LinkSource,
+                LinkSourceId = link.LinkSourceId,
                 Type = link.LinkType,
                 Name = link.Name
             };

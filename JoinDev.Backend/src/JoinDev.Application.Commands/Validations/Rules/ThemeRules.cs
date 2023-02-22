@@ -18,9 +18,11 @@ namespace JoinDev.Application.Commands.Validations.Rules
                 .WithMessage("The Name must have between 2 and 100 characters");
         }
 
-        public static IRuleBuilderOptions<T, ThemeCategory?> ThemeCategoryRule<T>(this IRuleBuilder<T, ThemeCategory?> ruleBuilder)
+        public static IRuleBuilderOptions<T, Guid> ThemeCategoryRule<T>(this IRuleBuilder<T, Guid> ruleBuilder)
         {
-            return ruleBuilder.NotNull()
+            return ruleBuilder
+                .NotNull()
+                .NotEqual(Guid.Empty)
                 .WithMessage("Please ensure you have entered a theme Category");
         }
     }

@@ -27,10 +27,11 @@ namespace JoinDev.Application.Commands.Validations.Rules
                 .WithMessage("Please ensure the link is valid");
         }
 
-        public static IRuleBuilderOptions<LinkSource?, string> LinkSourceRule<T>(this IRuleBuilder<LinkSource?, string> ruleBuilder)
+        public static IRuleBuilderOptions<T, Guid> LinkSourceRule<T>(this IRuleBuilder<T, Guid> ruleBuilder)
         {
             return ruleBuilder
                 .NotNull()
+                .NotEqual(Guid.Empty)
                 .WithMessage("Please ensure the link source is valid");
         }
 

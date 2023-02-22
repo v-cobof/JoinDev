@@ -19,26 +19,33 @@ namespace JoinDev.Application.Commands.Handlers
 
         public async override Task<CommandResult> Execute(CreateThemeCommand request)
         {
-            if (request.ThemeCategory == null)
-            {
-                await Notify(request, "The theme category is necessary");
-                return CommandResult.Failure();
-            }
-
-            var theme = new Theme(request.Name, request.ThemeCategory.Value);
-            var savedTheme = _uow.Projects.GetThemeByName(request.Name);
-
-            if (await savedTheme is not null)
+            if (await ThemeAlredyExists(request.Name))
             {
                 await Notify(request, "This theme alredy exists.");
                 return CommandResult.Failure();
             }
 
+            var category = await _uow.Projects.GetThemeCategoryById(request.ThemeCategoryId);
+
+            if (category is null)
+            {
+                await Notify(request, "The theme category was not found.");
+                return CommandResult.Failure();
+            }
+
+            var theme = new Theme(request.Name, category);
             theme.AddEvent(new ThemeCreatedEvent());
             
             _uow.Projects.CreateTheme(theme);
 
             return await _uow.Commit();
+        }
+
+        private async Task<bool> ThemeAlredyExists(string name)
+        {
+            var savedTheme = _uow.Projects.GetThemeByName(name);
+
+            return await savedTheme is not null;
         }
     }
 }

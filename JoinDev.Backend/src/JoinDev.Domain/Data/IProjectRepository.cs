@@ -17,5 +17,6 @@ namespace JoinDev.Domain.Data
         void UpdateTheme(Theme theme);
 
         Task<Theme> GetThemeByName(string name);
+        Task<ThemeCategory> GetThemeCategoryById(Guid id);
     }
 }

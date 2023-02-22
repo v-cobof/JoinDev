@@ -1,5 +1,4 @@
 ﻿using JoinDev.Domain.Core.Communication.Messages;
-using JoinDev.Domain.Enums;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,6 +10,6 @@ namespace JoinDev.Application.Commands
     public class CreateThemeCommand : Command
     {
         public string Name { get; set; }
-        public ThemeCategory? ThemeCategory { get; set; }
+        public Guid ThemeCategoryId { get; set; }
     }
 }

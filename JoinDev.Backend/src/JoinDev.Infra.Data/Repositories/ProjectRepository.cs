@@ -36,11 +36,6 @@ namespace JoinDev.Infra.Data.Repositories
             throw new NotImplementedException();
         }
 
-        public void Dispose()
-        {
-            _context.Dispose();
-        }
-
         public async Task<IEnumerable<Project>> GetAllProjects()
         {
             return await _context.Projects
@@ -64,6 +59,16 @@ namespace JoinDev.Infra.Data.Repositories
         public async Task<Theme> GetThemeByName(string name)
         {
             return await _context.Themes.FirstOrDefaultAsync(t => t.Name == name);
+        }
+
+        public Task<ThemeCategory> GetThemeCategoryById(Guid id)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void Dispose()
+        {
+            _context.Dispose();
         }
     }
 }
