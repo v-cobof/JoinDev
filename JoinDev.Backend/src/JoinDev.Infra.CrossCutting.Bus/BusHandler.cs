@@ -2,8 +2,8 @@
 using JoinDev.Domain.Core.Communication.Messages;
 using JoinDev.Domain.Core.Communication.Messages.Notifications;
 using JoinDev.Domain.Core.Validation.Results;
+using MassTransit;
 using MediatR;
-using Rebus.Bus;
 
 namespace JoinDev.Infra.CrossCutting.Bus
 {
@@ -18,12 +18,12 @@ namespace JoinDev.Infra.CrossCutting.Bus
             _bus = bus;
         }
 
-        public async Task PublishEvent<T>(T @event) where T : Event
+        public async Task PublishEvent<T>(T @event) where T : Domain.Core.Communication.Messages.Event
         {
             await _bus.Publish(@event);
         }
 
-        public async Task PublishEventsBatch<T>(IEnumerable<T> events) where T : Event
+        public async Task PublishEventsBatch<T>(IEnumerable<T> events) where T : Domain.Core.Communication.Messages.Event
         {
             var tasks = events.Select(t => PublishEvent(t)).ToList();
 

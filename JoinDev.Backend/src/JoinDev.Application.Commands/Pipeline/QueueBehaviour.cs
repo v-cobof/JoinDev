@@ -1,8 +1,8 @@
 ﻿using JoinDev.Domain.Core.Communication.Messages;
 using JoinDev.Domain.Core.Validation.Results;
+using MassTransit;
 using MediatR;
 using Newtonsoft.Json;
-using Rebus.Bus;
 
 namespace JoinDev.Application.Pipeline
 {

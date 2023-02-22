@@ -3,17 +3,12 @@ using JoinDev.Domain.Core.Communication.Messages;
 using JoinDev.Domain.Core.Communication.Messages.Notifications;
 using JoinDev.Domain.Core.Validation.Results;
 using JoinDev.Domain.Data;
+using MassTransit;
 using MediatR;
-using Rebus.Handlers;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace JoinDev.Application.Commands.Handlers
 {
-    public abstract class BaseCommandHandler<TReq, TRes> : IHandleMessages<TReq>, IRequestHandler<TReq, TRes> where TReq : Command, IRequest<TRes> where TRes : CommandResult
+    public abstract class BaseCommandHandler<TReq, TRes> : IConsumer<TReq>, IRequestHandler<TReq, TRes> where TReq : Command, IRequest<TRes> where TRes : CommandResult
     {
         protected readonly IUnitOfWork _uow;
         protected readonly IBusHandler _bus;
@@ -22,11 +17,6 @@ namespace JoinDev.Application.Commands.Handlers
         {
             _uow = uow;
             _bus = bus;
-        }
-
-        public async Task Handle(TReq message)
-        {
-            await Execute(message);
         }
 
         public async Task<TRes> Handle(TReq request, CancellationToken cancellationToken)
@@ -41,6 +31,11 @@ namespace JoinDev.Application.Commands.Handlers
             var notification = new DomainNotification(command.MessageType, message);
 
             await _bus.PublishNotification(notification);
+        }
+
+        public async Task Consume(ConsumeContext<TReq> context)
+        {
+            await Execute(context.Message);
         }
     }
 }

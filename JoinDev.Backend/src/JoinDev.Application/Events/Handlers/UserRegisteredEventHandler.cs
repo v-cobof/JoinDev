@@ -1,6 +1,7 @@
 ﻿using JoinDev.Application.Data;
 using JoinDev.Application.Models;
 using JoinDev.Application.Events;
+using MassTransit;
 
 namespace JoinDev.Application.Events.Handlers
 {
@@ -10,8 +11,10 @@ namespace JoinDev.Application.Events.Handlers
         {
         }
 
-        public async override Task Handle(UserRegisteredEvent message)
+        public async override Task Consume(ConsumeContext<UserRegisteredEvent> context)
         {
+            var message = context.Message;
+
             var user = new UserModel()
             {
                 Id = message.AggregateId,

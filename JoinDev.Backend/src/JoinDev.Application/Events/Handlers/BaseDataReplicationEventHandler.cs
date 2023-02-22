@@ -1,14 +1,9 @@
 ﻿using JoinDev.Application.Data;
-using Rebus.Handlers;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using MassTransit;
 
 namespace JoinDev.Application.Events.Handlers
 {
-    public abstract class BaseDataReplicationEventHandler<TEvent, TModel> : IHandleMessages<TEvent> where TEvent : Domain.Core.Communication.Messages.Event
+    public abstract class BaseDataReplicationEventHandler<TEvent, TModel> : IConsumer<TEvent> where TEvent : Domain.Core.Communication.Messages.Event
     {
         protected readonly IReplicationRepository<TModel> _repository;
 
@@ -17,6 +12,6 @@ namespace JoinDev.Application.Events.Handlers
             _repository = repository;
         }
 
-        public abstract Task Handle(TEvent message);
+        public abstract Task Consume(ConsumeContext<TEvent> context);
     }
 }

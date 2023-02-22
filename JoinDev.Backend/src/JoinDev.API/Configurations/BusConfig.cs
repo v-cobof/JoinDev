@@ -3,11 +3,7 @@ using JoinDev.Application.Commands.Handlers;
 using JoinDev.Application.Events;
 using JoinDev.Application.Events.Handlers;
 using JoinDev.Domain.Core.Communication.Messages;
-using Rebus.Bus;
-using Rebus.Config;
-using Rebus.Persistence.InMem;
-using Rebus.Routing.TypeBased;
-using Rebus.Transport.InMem;
+using MassTransit;
 
 namespace JoinDev.API.Configurations
 {
@@ -15,41 +11,30 @@ namespace JoinDev.API.Configurations
     {
         public static void AddBusConfiguration(this IServiceCollection services)
         {
-            var defaultQueue = "join-dev";
-            var commandQueue = "commands";
-            var eventsQueue = "events";
-
-            services.AddRebus(configure => configure
-                .Transport(t => t.UseInMemoryTransport(new InMemNetwork(true), defaultQueue))
-                //.Transport(t => t.UseRabbitMq("amqp://localhost", defaultQueue))
-                .Routing(r =>
-                {
-                    r.TypeBased()
-                        .MapAssemblyOf<Command>(defaultQueue)
-                        .MapAssemblyOf<RegisterUserCommand>(defaultQueue)
-                        .MapAssemblyOf<UserRegisteredEvent>(defaultQueue);
-                })
-                .Subscriptions(s => s.StoreInMemory())
-                .Options(o =>
-                {
-                    o.SetNumberOfWorkers(1);
-                    o.SetMaxParallelism(1);
-                    o.SetBusName("join-dev");
-                }),
-            true,
-            AddBusSubscriptions()
-            );
-
-            services.AutoRegisterHandlersFromAssemblyOf<RegisterUserCommandHandler>();
-            services.AutoRegisterHandlersFromAssemblyOf<UserRegisteredEventHandler>();
-        }
-
-        private static Func<IBus, Task> AddBusSubscriptions()
-        {
-            return delegate (IBus bus)
+            services.AddMassTransit(x =>
             {
-                return bus.Subscribe<UserRegisteredEvent>();
-            };
+                //x.AddConsumer<UpdateGameRankConsumer>();
+
+                // Set endpoint name construction with kebab case
+                x.SetKebabCaseEndpointNameFormatter();
+
+                x.UsingRabbitMq((context, rabbit) =>
+                {
+                    //rabbit.UseMessageRetry(x => x.Interval(2, 1000));
+
+                    rabbit.Host("localhost", "/", h =>
+                    {
+                        h.Username("guest");
+                        h.Password("guest");
+                    });
+
+                    rabbit.ReceiveEndpoint("commands-queue", endpoint =>
+                    {
+                        // Sets the consumer to be used for the endpoint
+                        endpoint.Consumer(t => t.Message<>)
+                    });
+                });
+            });
         }
     }
 }
