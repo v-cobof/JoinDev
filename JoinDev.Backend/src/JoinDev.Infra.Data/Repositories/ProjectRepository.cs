@@ -70,5 +70,15 @@ namespace JoinDev.Infra.Data.Repositories
         {
             _context.Dispose();
         }
+
+        public Task<ThemeCategory> GetThemeCategoryByName(string name)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void CreateThemeCategory(ThemeCategory category)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

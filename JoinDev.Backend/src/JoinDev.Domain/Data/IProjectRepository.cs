@@ -12,11 +12,19 @@ namespace JoinDev.Domain.Data
     {
         Task<IEnumerable<Project>> GetAllProjects();
 
+
+
+
+
         void CreateTheme(Theme theme);
-
         void UpdateTheme(Theme theme);
-
         Task<Theme> GetThemeByName(string name);
+
+
+
+
         Task<ThemeCategory> GetThemeCategoryById(Guid id);
+        Task<ThemeCategory> GetThemeCategoryByName(string name);
+        void CreateThemeCategory(ThemeCategory category);
     }
 }

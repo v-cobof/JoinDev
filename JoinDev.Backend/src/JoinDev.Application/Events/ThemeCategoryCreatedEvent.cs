@@ -2,8 +2,7 @@
 
 namespace JoinDev.Application.Events
 {
-    public class ThemeCreatedEvent : Event
+    public class ThemeCategoryCreatedEvent : Event
     {
-
     }
 }

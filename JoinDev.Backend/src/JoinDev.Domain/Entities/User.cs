@@ -40,7 +40,7 @@ namespace JoinDev.Domain.Entities
         // EF
         protected User() { }     
         
-        public static class UserFactory
+        public static class Factory
         {
             public static User CreateUserToRegister(string email, string name, string password)
             {

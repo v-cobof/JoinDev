@@ -17,7 +17,16 @@ namespace JoinDev.API.Controllers
 
         [HttpPost]
         [Route("create-theme")]
-        public async Task<ActionResult> CreateProject([FromBody] CreateThemeCommand command)
+        public async Task<ActionResult> CreateTheme([FromBody] CreateThemeCommand command)
+        {
+            var result = _bus.SendCommand(command);
+
+            return CustomResponse(await result);
+        }
+
+        [HttpPost]
+        [Route("create-theme-category")]
+        public async Task<ActionResult> CreateThemeCategory([FromBody] CreateThemeCategoryCommand command)
         {
             var result = _bus.SendCommand(command);
 
