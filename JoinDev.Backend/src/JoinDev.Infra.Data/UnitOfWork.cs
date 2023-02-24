@@ -34,6 +34,6 @@ namespace JoinDev.Infra.Data
             if (sucesso) await _bus.PublishEntityEvents(_context);
 
             return sucesso;
-        }
+        },
     }
 }

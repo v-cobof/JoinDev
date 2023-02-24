@@ -8,13 +8,11 @@ using System.Threading.Tasks;
 
 namespace JoinDev.Application.Commands.Validations
 {
-    public class CreateThemeCommandValidation : AbstractValidator<CreateThemeCommand>
+    public class CreateThemeCategoryCommandValidation : AbstractValidator<CreateThemeCategoryCommand>
     {
-        public CreateThemeCommandValidation()
+        public CreateThemeCategoryCommandValidation()
         {
             RuleFor(c => c.Name).NameRule();
-
-            RuleFor(c => c.ThemeCategoryId).ThemeCategoryRule();
         }
     }
 }

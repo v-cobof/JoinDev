@@ -10,10 +10,10 @@ namespace JoinDev.Application.Commands.Validations.Rules
 {
     public static class ThemeRules
     {
-        public static IRuleBuilderOptions<T, string> ThemeNameRule<T>(this IRuleBuilder<T, string> ruleBuilder)
+        public static IRuleBuilderOptions<T, string> NameRule<T>(this IRuleBuilder<T, string> ruleBuilder)
         {
             return ruleBuilder.NotEmpty()
-                .WithMessage("Please ensure you have entered the Name of the Theme")
+                .WithMessage("Please ensure you have entered the Name")
                 .Length(2, 100)
                 .WithMessage("The Name must have between 2 and 100 characters");
         }

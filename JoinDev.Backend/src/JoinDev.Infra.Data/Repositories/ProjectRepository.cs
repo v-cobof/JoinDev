@@ -61,9 +61,9 @@ namespace JoinDev.Infra.Data.Repositories
             return await _context.Themes.FirstOrDefaultAsync(t => t.Name == name);
         }
 
-        public Task<ThemeCategory> GetThemeCategoryById(Guid id)
+        public async Task<ThemeCategory> GetThemeCategoryById(Guid id)
         {
-            throw new NotImplementedException();
+            return await _context.ThemeCategories.FirstOrDefaultAsync(t => t.Id == id);
         }
 
         public void Dispose()
@@ -71,14 +71,14 @@ namespace JoinDev.Infra.Data.Repositories
             _context.Dispose();
         }
 
-        public Task<ThemeCategory> GetThemeCategoryByName(string name)
+        public async Task<ThemeCategory> GetThemeCategoryByName(string name)
         {
-            throw new NotImplementedException();
+            return await _context.ThemeCategories.FirstOrDefaultAsync(t => t.Name == name);
         }
 
         public void CreateThemeCategory(ThemeCategory category)
         {
-            throw new NotImplementedException();
+            _context.ThemeCategories.Add(category);
         }
     }
 }

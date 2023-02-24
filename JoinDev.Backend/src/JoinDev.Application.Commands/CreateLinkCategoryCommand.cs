@@ -1,8 +1,8 @@
 ﻿using JoinDev.Domain.Core.Communication.Messages;
 
-namespace JoinDev.Application.Events
+namespace JoinDev.Application.Commands
 {
-    public class ThemeCategoryCreatedEvent : Event
+    public class CreateLinkCategoryCommand : Command
     {
         public string Name { get; set; }
     }

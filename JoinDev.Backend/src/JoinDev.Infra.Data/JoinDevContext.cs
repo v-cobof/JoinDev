@@ -19,9 +19,11 @@ namespace JoinDev.Infra.Data
 
         public DbSet<ProjectRestrictedInfo> ProjectsRestrictedInfo { get; set; }
         public DbSet<Theme> Themes { get; set; }
+        public DbSet<ThemeCategory> ThemeCategories { get; set; }
         public DbSet<User> Users { get; set; }
 
         public DbSet<Link> Links { get; set; }
+        public DbSet<LinkSource> LinkSources { get; set; }
 
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)

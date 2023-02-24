@@ -6,17 +6,17 @@ using JoinDev.Domain.Entities;
 
 namespace JoinDev.Application.Commands.Handlers
 {
-    public class CreateThemeCategoryCommandHandler : BaseCommandHandler<CreateThemeCategoryCommand, CommandResult>
+    public class CreateLinkCategoryCommandHandler : BaseCommandHandler<CreateLinkCategoryCommand, CommandResult>
     {
-        public CreateThemeCategoryCommandHandler(IUnitOfWork uow, IBusHandler bus) : base(uow, bus)
+        public CreateLinkCategoryCommandHandler(IUnitOfWork uow, IBusHandler bus) : base(uow, bus)
         {
         }
 
-        public async override Task<CommandResult> Execute(CreateThemeCategoryCommand request)
+        public async override Task<CommandResult> Execute(CreateLinkCategoryCommand request)
         {
             var category = await _uow.Projects.GetThemeCategoryByName(request.Name);
 
-            if(category is not null)
+            if (category is not null)
             {
                 await Notify(request, "This theme category alredy exists.");
                 return CommandResult.Failure();
@@ -30,3 +30,4 @@ namespace JoinDev.Application.Commands.Handlers
         }
     }
 }
+

@@ -10,7 +10,7 @@ namespace JoinDev.Domain.Data
     public interface IUnitOfWork : IUnitOfWorkBase
     {
         IUserRepository Users { get; }
-
         IProjectRepository Projects { get; }
+        ICategoryRepository Categories { get; }
     }
 }

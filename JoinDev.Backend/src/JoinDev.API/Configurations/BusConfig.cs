@@ -39,6 +39,7 @@ namespace JoinDev.API.Configurations
                     rabbit.ReceiveEndpoint("events-queue", endpoint =>
                     {
                         endpoint.ConfigureConsumer<UserRegisteredEventHandler>(context);
+                        //endpoint.Bind<ThemeCategoryCreatedEvent>();
                     });
                 });
             });

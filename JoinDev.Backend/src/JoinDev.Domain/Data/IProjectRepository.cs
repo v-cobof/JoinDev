@@ -23,8 +23,6 @@ namespace JoinDev.Domain.Data
 
 
 
-        Task<ThemeCategory> GetThemeCategoryById(Guid id);
-        Task<ThemeCategory> GetThemeCategoryByName(string name);
-        void CreateThemeCategory(ThemeCategory category);
+
     }
 }
