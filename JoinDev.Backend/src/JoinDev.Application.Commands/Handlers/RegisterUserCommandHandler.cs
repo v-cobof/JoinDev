@@ -8,13 +8,16 @@ namespace JoinDev.Application.Commands.Handlers
 {
     public class RegisterUserCommandHandler : BaseCommandHandler<RegisterUserCommand, CommandResult>
     {
-        public RegisterUserCommandHandler(IUnitOfWork uow, IBusHandler bus) : base(uow, bus)
+        private readonly IUserRepository _userRepository;
+
+        public RegisterUserCommandHandler(IUserRepository repository, IBusHandler bus) : base(bus)
         {
+            _userRepository = repository;
         }
 
         public async override Task<CommandResult> Execute(RegisterUserCommand request)
         {          
-            var registeredUser = _uow.Users.GetByEmail(request.Email);
+            var registeredUser =_userRepository.GetByEmail(request.Email);
 
             if (await registeredUser is not null)
             {
@@ -25,9 +28,9 @@ namespace JoinDev.Application.Commands.Handlers
             var user = User.Factory.CreateUserToRegister(request.Email, request.Name, request.Password);
             user.AddEvent(new UserRegisteredEvent(user.Id, user.Name, user.Email));
 
-            _uow.Users.Create(user);
+            _userRepository.Create(user);
 
-            return await _uow.Commit();
+            return await _userRepository.UnitOfWork.Commit();
         }
     }
 }

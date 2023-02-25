@@ -10,12 +10,10 @@ namespace JoinDev.Application.Commands.Handlers
 {
     public abstract class BaseCommandHandler<TReq, TRes> : IConsumer<TReq>, IRequestHandler<TReq, TRes> where TReq : Command, IRequest<TRes> where TRes : CommandResult
     {
-        protected readonly IUnitOfWork _uow;
         protected readonly IBusHandler _bus;
 
-        public BaseCommandHandler(IUnitOfWork uow, IBusHandler bus)
+        public BaseCommandHandler(IBusHandler bus)
         {
-            _uow = uow;
             _bus = bus;
         }
 

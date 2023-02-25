@@ -14,6 +14,8 @@ namespace JoinDev.Infra.Data.Repositories
     {
         private readonly JoinDevContext _context;
 
+        public IUnitOfWork UnitOfWork => _context;
+
         public UserRepository(JoinDevContext context)
         {
             _context = context;

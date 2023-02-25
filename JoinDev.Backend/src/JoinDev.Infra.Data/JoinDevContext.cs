@@ -1,4 +1,6 @@
-﻿using JoinDev.Domain.Core.Communication.Messages;
+﻿using JoinDev.Domain.Core.Communication;
+using JoinDev.Domain.Core.Communication.Messages;
+using JoinDev.Domain.Core.Data;
 using JoinDev.Domain.Entities;
 using JoinDev.Domain.ValueObjects;
 using JoinDev.Infra.Data.Extensions;
@@ -6,11 +8,14 @@ using Microsoft.EntityFrameworkCore;
 
 namespace JoinDev.Infra.Data
 {
-    public sealed class JoinDevContext : DbContext
+    public sealed class JoinDevContext : DbContext, IUnitOfWork
     {
-        public JoinDevContext(DbContextOptions<JoinDevContext> options)
+        private readonly IBusHandler _bus;
+
+        public JoinDevContext(DbContextOptions<JoinDevContext> options, IBusHandler bus)
             : base(options)
         {
+            _bus = bus;
         }
 
         public DbSet<Project> Projects { get; set; }
@@ -25,6 +30,14 @@ namespace JoinDev.Infra.Data
         public DbSet<Link> Links { get; set; }
         public DbSet<LinkSource> LinkSources { get; set; }
 
+        public async Task<bool> Commit()
+        {
+            var sucesso = await SaveChangesAsync() > 0;
+
+            if (sucesso) await _bus.PublishEntityEvents(this);
+
+            return sucesso;
+        }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

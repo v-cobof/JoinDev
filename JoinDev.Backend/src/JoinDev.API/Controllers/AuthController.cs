@@ -16,20 +16,20 @@ namespace JoinDev.API.Controllers
     {
         private readonly ITokenService _tokenService;
         private readonly IEncryptionService _encryptionService;
-        private readonly IUnitOfWork _uow;
+        private readonly IUserRepository _userRepository;
         private readonly AppSettings _appSettings;
 
         public AuthController(INotificationHandler<DomainNotification> notifications,
                               ITokenService tokenService,
                               IEncryptionService encryptionService,
-                              IUnitOfWork uow,
+                              IUserRepository userRepository,
                               IOptions<AppSettings> options,
                               IBusHandler bus
         ) : base(notifications, bus)
         {
             _encryptionService = encryptionService;
-            _tokenService = tokenService;   
-            _uow = uow;
+            _tokenService = tokenService;
+            _userRepository = userRepository;
             _appSettings = options.Value;
         }
 
@@ -48,7 +48,7 @@ namespace JoinDev.API.Controllers
         [Route("login")]
         public async Task<ActionResult<LoginResponseViewModel>> Login([FromBody] LoginUserViewModel viewModel)
         {
-            var user = await _uow.Users.GetByEmail(viewModel.Email);
+            var user = await _userRepository.GetByEmail(viewModel.Email);
 
             if (user is null) return NotFound();
 

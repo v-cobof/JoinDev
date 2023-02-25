@@ -6,13 +6,16 @@ using JoinDev.Domain.Entities;
 
 namespace JoinDev.Application.Commands.Handlers
 {
-    public class CreateLinkCategoryCommandHandler : BaseCommandHandler<CreateLinkCategoryCommand, CommandResult>
+    public class CreateLinkSourceCommandHandler : BaseCommandHandler<CreateLinkSourceCommand, CommandResult>
     {
-        public CreateLinkCategoryCommandHandler(IUnitOfWork uow, IBusHandler bus) : base(uow, bus)
+        private readonly ILinkSourceDAO _linkSourceDAO;
+
+        public CreateLinkSourceCommandHandler(ILinkSourceDAO dao, IBusHandler bus) : base(bus)
         {
+            _linkSourceDAO = dao;
         }
 
-        public async override Task<CommandResult> Execute(CreateLinkCategoryCommand request)
+        public async override Task<CommandResult> Execute(CreateLinkSourceCommand request)
         {
             var category = await _uow.Projects.GetThemeCategoryByName(request.Name);
 

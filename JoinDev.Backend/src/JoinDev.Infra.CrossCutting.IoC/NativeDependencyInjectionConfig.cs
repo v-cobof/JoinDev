@@ -10,6 +10,7 @@ using JoinDev.Domain.Core.Communication.Messages.Notifications;
 using JoinDev.Domain.Data;
 using JoinDev.Infra.CrossCutting.Bus;
 using JoinDev.Infra.Data;
+using JoinDev.Infra.Data.DAO;
 using JoinDev.Infra.Data.Read;
 using JoinDev.Infra.Data.Repositories;
 using MediatR;
@@ -32,9 +33,12 @@ namespace JoinDev.Infra.CrossCutting.IoC
             services.AddScoped<INotificationHandler<DomainNotification>, DomainNotificationHandler>();
 
             // Data
-            services.AddScoped<IUnitOfWork, UnitOfWork>();
             services.AddScoped<IUserRepository, UserRepository>();
             services.AddScoped<IProjectRepository, ProjectRepository>();
+            services.AddScoped<IThemeDAO, ThemeDAO>();
+            services.AddScoped<IThemeCategoryDAO, ThemeCategoryDAO>();
+            services.AddScoped<ILinkSourceDAO, LinkSourceDAO>();
+
 
             services.AddScoped(typeof(IReplicationRepository<>), typeof(ReplicationRepository<>));
 

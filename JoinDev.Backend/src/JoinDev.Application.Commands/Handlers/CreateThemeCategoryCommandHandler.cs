@@ -8,13 +8,16 @@ namespace JoinDev.Application.Commands.Handlers
 {
     public class CreateThemeCategoryCommandHandler : BaseCommandHandler<CreateThemeCategoryCommand, CommandResult>
     {
-        public CreateThemeCategoryCommandHandler(IUnitOfWork uow, IBusHandler bus) : base(uow, bus)
+        private readonly IThemeCategoryDAO _themeCategoryDAO;
+
+        public CreateThemeCategoryCommandHandler(IThemeCategoryDAO dao, IBusHandler bus) : base(bus)
         {
+            _themeCategoryDAO = dao;
         }
 
         public async override Task<CommandResult> Execute(CreateThemeCategoryCommand request)
         {
-            var category = await _uow.Projects.GetThemeCategoryByName(request.Name);
+            var category = await _themeCategoryDAO.GetThemeCategoryByName(request.Name);
 
             if(category is not null)
             {
@@ -25,8 +28,7 @@ namespace JoinDev.Application.Commands.Handlers
             var newCategory = new ThemeCategory(request.Name);
             newCategory.AddEvent(new ThemeCategoryCreatedEvent() { Name = request.Name });
 
-            _uow.Projects.CreateThemeCategory(newCategory);
-            return await _uow.Commit();
+            return await _themeCategoryDAO.CreateThemeCategory(newCategory);
         }
     }
 }

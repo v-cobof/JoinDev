@@ -2,7 +2,7 @@
 
 namespace JoinDev.Application.Commands
 {
-    public class CreateLinkCategoryCommand : Command
+    public class CreateLinkSourceCommand : Command
     {
         public string Name { get; set; }
     }

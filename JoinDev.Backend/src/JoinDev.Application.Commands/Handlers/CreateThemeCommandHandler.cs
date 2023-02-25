@@ -3,18 +3,18 @@ using JoinDev.Domain.Core.Validation.Results;
 using JoinDev.Domain.Data;
 using JoinDev.Domain.Entities;
 using JoinDev.Application.Events;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace JoinDev.Application.Commands.Handlers
 {
     public class CreateThemeCommandHandler : BaseCommandHandler<CreateThemeCommand, CommandResult>
     {
-        public CreateThemeCommandHandler(IUnitOfWork uow, IBusHandler bus) : base(uow, bus)
+        private readonly IThemeDAO _themeDAO;
+        private readonly IThemeCategoryDAO _themeCategoryDAO;
+
+        public CreateThemeCommandHandler(IThemeDAO dao, IThemeCategoryDAO categoryDao, IBusHandler bus) : base(bus)
         {
+            _themeDAO = dao;
+            _themeCategoryDAO = categoryDao;
         }
 
         public async override Task<CommandResult> Execute(CreateThemeCommand request)
@@ -25,7 +25,7 @@ namespace JoinDev.Application.Commands.Handlers
                 return CommandResult.Failure();
             }
 
-            var category = await _uow.Projects.GetThemeCategoryById(request.ThemeCategoryId);
+            var category = await _themeCategoryDAO.GetThemeCategoryById(request.ThemeCategoryId);
 
             if (category is null)
             {
@@ -36,14 +36,12 @@ namespace JoinDev.Application.Commands.Handlers
             var theme = new Theme(request.Name, category);
             theme.AddEvent(new ThemeCreatedEvent());
             
-            _uow.Projects.CreateTheme(theme);
-
-            return await _uow.Commit();
+            return await _themeDAO.CreateTheme(theme);
         }
 
         private async Task<bool> ThemeAlredyExists(string name)
         {
-            var savedTheme = _uow.Projects.GetThemeByName(name);
+            var savedTheme = _themeDAO.GetThemeByName(name);
 
             return await savedTheme is not null;
         }
