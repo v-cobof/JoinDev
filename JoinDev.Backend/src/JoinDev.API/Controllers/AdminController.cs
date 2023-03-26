@@ -19,18 +19,21 @@ namespace JoinDev.API.Controllers
         [Route("create-theme")]
         public async Task<ActionResult> CreateTheme([FromBody] CreateThemeCommand command)
         {
-            var result = _bus.SendCommand(command);
-
-            return CustomResponse(await result);
+            return await SendCommand(command);
         }
 
         [HttpPost]
         [Route("create-theme-category")]
         public async Task<ActionResult> CreateThemeCategory([FromBody] CreateThemeCategoryCommand command)
         {
-            var result = _bus.SendCommand(command);
+            return await SendCommand(command);
+        }
 
-            return CustomResponse(await result);
+        [HttpPost]
+        [Route("create-link-source")]
+        public async Task<ActionResult> CreateLinkSource([FromBody] CreateLinkSourceCommand command)
+        {
+            return await SendCommand(command);
         }
     }
 }

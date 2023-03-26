@@ -25,16 +25,8 @@ namespace JoinDev.API.Controllers
         public async Task<ActionResult> CreateProject([FromBody] CreateProjectCommand command) 
         {
             command.Links.SetAsUserLinks();
-            var result = _bus.SendCommand(command);
-
-            return CustomResponse(await result);
-        }
-
-        [HttpPost]
-        public ActionResult GetTeste()
-        {
-
-            return CustomResponse("teste teste");
+            
+            return await SendCommand(command);
         }
     }
 }

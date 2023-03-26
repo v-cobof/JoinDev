@@ -1,5 +1,6 @@
 ﻿using JoinDev.Application;
 using JoinDev.Domain.Core.Communication;
+using JoinDev.Domain.Core.Communication.Messages;
 using JoinDev.Domain.Core.Communication.Messages.Notifications;
 using JoinDev.Domain.Core.Validation.Results;
 using MediatR;
@@ -29,6 +30,13 @@ namespace JoinDev.API.Controllers
             {
                 { "Messages", _notificationHandler.GetErrors().ToArray() }
             }));
+        }
+
+        protected async Task<ActionResult> SendCommand(Command command)
+        {
+            var result = _bus.SendCommand(command);
+
+            return CustomResponse(await result);
         }
 
         protected bool IsOperationValid()
