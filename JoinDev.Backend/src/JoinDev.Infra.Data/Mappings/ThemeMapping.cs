@@ -14,6 +14,8 @@ namespace JoinDev.Infra.Data.Mappings
             builder.HasMany(c => c.Projects)
                 .WithMany(c => c.Themes);
 
+            builder.HasIndex(c => c.Name).IsUnique();
+
             builder.ToTable("Themes");
         }
     }

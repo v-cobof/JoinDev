@@ -24,7 +24,7 @@ namespace JoinDev.Infra.CrossCutting.IoC
         public static void RegisterServices(IServiceCollection services)
         {
             // Mediator (In memory bus)
-            services.AddMediatR(typeof(BaseCommandHandler<,>));
+            services.AddMediatR(typeof(BaseCommandHandler<>));
             services.AddScoped<IBusHandler, BusHandler>();
 
             services.AddTransient(typeof(IPipelineBehavior<,>), typeof(ValidationBehaviour<,>));

@@ -6,7 +6,7 @@ using JoinDev.Application.Events;
 
 namespace JoinDev.Application.Commands.Handlers
 {
-    public class RegisterUserCommandHandler : BaseCommandHandler<RegisterUserCommand, CommandResult>
+    public class RegisterUserCommandHandler : BaseCommandHandler<RegisterUserCommand>
     {
         private readonly IUserRepository _userRepository;
 

@@ -15,6 +15,8 @@ namespace JoinDev.Infra.Data.Mappings
                 .WithOne(c => c.LinkSource)
                 .HasForeignKey(c => c.LinkSourceId);
 
+            builder.HasIndex(c => c.Name).IsUnique();
+
             builder.ToTable("LinkSource");
         }
     }

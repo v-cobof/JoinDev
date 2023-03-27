@@ -6,7 +6,7 @@ using JoinDev.Domain.Entities;
 
 namespace JoinDev.Application.Commands.Handlers
 {
-    public class CreateThemeCategoryCommandHandler : BaseCommandHandler<CreateThemeCategoryCommand, CommandResult>
+    public class CreateThemeCategoryCommandHandler : BaseCommandHandler<CreateThemeCategoryCommand>
     {
         private readonly IThemeCategoryDAO _themeCategoryDAO;
 
@@ -17,16 +17,9 @@ namespace JoinDev.Application.Commands.Handlers
 
         public async override Task<CommandResult> Execute(CreateThemeCategoryCommand request)
         {
-            var category = await _themeCategoryDAO.GetThemeCategoryByName(request.Name);
-
-            if(category is not null)
-            {
-                await Notify(request, "This theme category alredy exists.");
-                return CommandResult.Failure();
-            }
-
             var newCategory = new ThemeCategory(request.Name);
-            newCategory.AddEvent(new ThemeCategoryCreatedEvent() { Name = request.Name });
+
+            newCategory.AddEvent(new ThemeCategoryCreatedEvent(newCategory.Id, newCategory.Name));
 
             return await _themeCategoryDAO.CreateThemeCategory(newCategory);
         }

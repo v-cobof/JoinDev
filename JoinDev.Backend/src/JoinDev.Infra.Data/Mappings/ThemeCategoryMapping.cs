@@ -15,6 +15,8 @@ namespace JoinDev.Infra.Data.Mappings
                 .WithOne(c => c.ThemeCategory)
                 .HasForeignKey(c => c.ThemeCategoryId);
 
+            builder.HasIndex(c => c.Name).IsUnique();
+
             builder.ToTable("ThemeCategory");
         }
     }

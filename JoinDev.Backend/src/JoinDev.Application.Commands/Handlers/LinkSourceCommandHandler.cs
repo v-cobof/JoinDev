@@ -6,7 +6,7 @@ using JoinDev.Domain.Entities;
 
 namespace JoinDev.Application.Commands.Handlers
 {
-    public class CreateLinkSourceCommandHandler : BaseCommandHandler<CreateLinkSourceCommand, CommandResult>
+    public class CreateLinkSourceCommandHandler : BaseCommandHandler<CreateLinkSourceCommand>
     {
         private readonly ILinkSourceDAO _linkSourceDAO;
 
@@ -17,19 +17,11 @@ namespace JoinDev.Application.Commands.Handlers
 
         public async override Task<CommandResult> Execute(CreateLinkSourceCommand request)
         {
-            var category = await _uow.Projects.GetThemeCategoryByName(request.Name);
+            var source = new LinkSource(request.Name);
 
-            if (category is not null)
-            {
-                await Notify(request, "This theme category alredy exists.");
-                return CommandResult.Failure();
-            }
+            source.AddEvent(new LinkSourceCreatedEvent(source.Id, source.Name));
 
-            var newCategory = new ThemeCategory(request.Name);
-            newCategory.AddEvent(new ThemeCategoryCreatedEvent() { Name = request.Name });
-
-            _uow.Projects.CreateThemeCategory(newCategory);
-            return await _uow.Commit();
+            return await _linkSourceDAO.CreateLinkSource(source);
         }
     }
 }

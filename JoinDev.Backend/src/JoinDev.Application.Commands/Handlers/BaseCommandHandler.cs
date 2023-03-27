@@ -8,7 +8,7 @@ using MediatR;
 
 namespace JoinDev.Application.Commands.Handlers
 {
-    public abstract class BaseCommandHandler<TReq, TRes> : IConsumer<TReq>, IRequestHandler<TReq, TRes> where TReq : Command, IRequest<TRes> where TRes : CommandResult
+    public abstract class BaseCommandHandler<TReq> : IConsumer<TReq>, IRequestHandler<TReq, CommandResult> where TReq : Command, IRequest<CommandResult>
     {
         protected readonly IBusHandler _bus;
 
@@ -17,12 +17,7 @@ namespace JoinDev.Application.Commands.Handlers
             _bus = bus;
         }
 
-        public async Task<TRes> Handle(TReq request, CancellationToken cancellationToken)
-        {
-            return await Execute(request);
-        }
-
-        public abstract Task<TRes> Execute(TReq request);
+        public abstract Task<CommandResult> Execute(TReq request);
 
         protected async Task Notify(Command command, string message)
         {
@@ -34,6 +29,11 @@ namespace JoinDev.Application.Commands.Handlers
         public async Task Consume(ConsumeContext<TReq> context)
         {
             await Execute(context.Message);
+        }
+
+        public async Task<CommandResult> Handle(TReq request, CancellationToken cancellationToken)
+        {
+            return await Execute(request);
         }
     }
 }
