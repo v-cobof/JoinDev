@@ -18,6 +18,8 @@ namespace JoinDev.Infra.Data.Mappings
                 .WithOne()
                 .HasForeignKey(c => c.AggregateId);
 
+            builder.HasIndex(c => c.Email).IsUnique();
+
             builder.ToTable("Users");
         }
     }
