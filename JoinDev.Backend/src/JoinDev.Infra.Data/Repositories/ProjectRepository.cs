@@ -48,9 +48,29 @@ namespace JoinDev.Infra.Data.Repositories
                 .ToListAsync();  
         }
 
+        public async void CreateTheme(Theme theme)
+        {
+            _context.Themes.Add(theme);
+        }
+
+        public void UpdateTheme(Theme theme)
+        {
+            throw new NotImplementedException();
+        }
+
+        public async Task<Theme> GetThemeByName(string name)
+        {
+            return await _context.Themes.FirstOrDefaultAsync(t => t.Name == name);
+        }
+
         public void Dispose()
         {
             _context.Dispose();
+        }
+
+        public Task<List<Theme>> GetThemesByIds(List<Guid> ids)
+        {
+            return _context.Themes.Where(t => ids.Contains(t.Id)).ToListAsync();
         }
     }
 }

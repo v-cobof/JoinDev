@@ -20,6 +20,8 @@ namespace JoinDev.Application.Mappers
 
         public static void SetAsUserLinks(this IEnumerable<LinkModel> links)
         {
+            if (links is null) return;
+
             foreach (var link in links)
             {
                 link.SetAsUserLink();

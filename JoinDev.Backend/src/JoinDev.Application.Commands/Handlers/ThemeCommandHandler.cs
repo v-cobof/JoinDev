@@ -8,12 +8,12 @@ namespace JoinDev.Application.Commands.Handlers
 {
     public class CreateThemeCommandHandler : BaseCommandHandler<CreateThemeCommand>
     {
-        private readonly IThemeDAO _themeDAO;
+        private readonly IProjectRepository _projectRepository;
         private readonly IThemeCategoryDAO _themeCategoryDAO;
 
-        public CreateThemeCommandHandler(IThemeDAO dao, IThemeCategoryDAO categoryDao, IBusHandler bus) : base(bus)
+        public CreateThemeCommandHandler(IProjectRepository repository, IThemeCategoryDAO categoryDao, IBusHandler bus) : base(bus)
         {
-            _themeDAO = dao;
+            _projectRepository = repository;
             _themeCategoryDAO = categoryDao;
         }
 
@@ -30,7 +30,8 @@ namespace JoinDev.Application.Commands.Handlers
             var theme = new Theme(request.Name, category);
             theme.AddEvent(new ThemeCreatedEvent());
             
-            return await _themeDAO.CreateTheme(theme);
+            _projectRepository.CreateTheme(theme);
+            return await _projectRepository.UnitOfWork.Commit();
         }
     }
 }

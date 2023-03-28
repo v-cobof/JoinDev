@@ -21,6 +21,8 @@ namespace JoinDev.Application.Models
             };
         }
 
+        public LinkModel() { }
+
         public void SetAsUserLink()
         {
             Type = LinkType.UserLink;

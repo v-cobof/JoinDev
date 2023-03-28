@@ -11,5 +11,11 @@ namespace JoinDev.Domain.Data
     public interface IProjectRepository : IRepository<Project>
     {
         Task<IEnumerable<Project>> GetAllProjects();
+
+        void CreateTheme(Theme theme);
+        void UpdateTheme(Theme theme);
+        Task<Theme> GetThemeByName(string name);
+
+        Task<List<Theme>> GetThemesByIds(List<Guid> ids);
     }
 }

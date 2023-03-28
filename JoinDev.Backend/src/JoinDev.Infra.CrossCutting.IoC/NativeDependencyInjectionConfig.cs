@@ -35,7 +35,6 @@ namespace JoinDev.Infra.CrossCutting.IoC
             // Data
             services.AddScoped<IUserRepository, UserRepository>();
             services.AddScoped<IProjectRepository, ProjectRepository>();
-            services.AddScoped<IThemeDAO, ThemeDAO>();
             services.AddScoped<IThemeCategoryDAO, ThemeCategoryDAO>();
             services.AddScoped<ILinkSourceDAO, LinkSourceDAO>();
 

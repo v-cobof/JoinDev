@@ -24,8 +24,6 @@ namespace JoinDev.API.Controllers
         [Route("create")]
         public async Task<ActionResult> CreateProject([FromBody] CreateProjectCommand command) 
         {
-            command.Links.SetAsUserLinks();
-            
             return await SendCommand(command);
         }
     }
