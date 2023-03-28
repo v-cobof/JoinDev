@@ -1,5 +1,5 @@
 ﻿using JoinDev.Application.Commands;
-using JoinDev.Application.Commands.Handlers;
+using JoinDev.Application.Commands.Handlers.Users;
 using JoinDev.Application.Events;
 using JoinDev.Application.Events.Handlers;
 using JoinDev.Domain.Core.Communication.Messages;

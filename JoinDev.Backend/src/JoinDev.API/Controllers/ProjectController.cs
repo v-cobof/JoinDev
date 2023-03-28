@@ -11,9 +11,9 @@ namespace JoinDev.API.Controllers
 {
     [Authorize]
     [Route("projects")]
-    public class ProjectCreatorController : AbstractController
+    public class ProjectController : AbstractController
     {
-        public ProjectCreatorController(
+        public ProjectController(
             INotificationHandler<DomainNotification> notifications, 
             IBusHandler bus
         ) : base(notifications, bus)
@@ -21,8 +21,15 @@ namespace JoinDev.API.Controllers
         }
 
         [HttpPost]
-        [Route("create")]
-        public async Task<ActionResult> CreateProject([FromBody] CreateProjectCommand command) 
+        [Route("study/create")]
+        public async Task<ActionResult> CreateProject([FromBody] CreateStudyProjectCommand command) 
+        {
+            return await SendCommand(command);
+        }
+
+        [HttpPost]
+        [Route("job/create")]
+        public async Task<ActionResult> CreateProject([FromBody] CreateJobProjectCommand command)
         {
             return await SendCommand(command);
         }

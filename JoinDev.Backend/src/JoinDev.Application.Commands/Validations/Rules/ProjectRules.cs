@@ -47,7 +47,7 @@ namespace JoinDev.Application.Commands.Validations.Rules
                 .WithMessage("The Restricted Description must have between 2 and 100 characters");
         }
 
-        public static IRuleBuilderOptions<T, IEnumerable<string>> ProjectThemesIdsRule<T>(this IRuleBuilder<T, IEnumerable<string>> ruleBuilder)
+        public static IRuleBuilderOptions<T, IEnumerable<Guid>> ProjectThemesIdsRule<T>(this IRuleBuilder<T, IEnumerable<Guid>> ruleBuilder)
         {
             return ruleBuilder.NotEmpty()
                 .WithMessage("Please ensure you have entered the Project Themes");

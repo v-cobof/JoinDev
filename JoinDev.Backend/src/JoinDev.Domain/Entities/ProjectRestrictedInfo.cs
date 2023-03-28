@@ -12,14 +12,11 @@ namespace JoinDev.Domain.Entities
     public class ProjectRestrictedInfo : Entity
     {
         public string Description { get; private set; }
-
+        public IReadOnlyCollection<Link> Links => _links;
         public Guid ProjectId { get; private set; }
         public Project Project { get; private set; }
 
-
         private List<Link> _links;
-        public IReadOnlyCollection<Link> Links => _links;
-
 
         public ProjectRestrictedInfo(string description, Guid projectId, List<Link> links)
         {

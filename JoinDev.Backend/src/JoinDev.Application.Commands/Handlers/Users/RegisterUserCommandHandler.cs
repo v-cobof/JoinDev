@@ -4,7 +4,7 @@ using JoinDev.Domain.Data;
 using JoinDev.Domain.Entities;
 using JoinDev.Application.Events;
 
-namespace JoinDev.Application.Commands.Handlers
+namespace JoinDev.Application.Commands.Handlers.Users
 {
     public class RegisterUserCommandHandler : BaseCommandHandler<RegisterUserCommand>
     {
@@ -16,8 +16,8 @@ namespace JoinDev.Application.Commands.Handlers
         }
 
         public async override Task<CommandResult> Execute(RegisterUserCommand request)
-        {          
-            var registeredUser =_userRepository.GetByEmail(request.Email);
+        {
+            var registeredUser = _userRepository.GetByEmail(request.Email);
 
             if (await registeredUser is not null)
             {
