@@ -9,6 +9,8 @@ using JoinDev.Domain.Core.Communication;
 using JoinDev.Domain.Core.Communication.Messages.Notifications;
 using JoinDev.Domain.Data;
 using JoinDev.Infra.CrossCutting.Bus;
+using JoinDev.Infra.CrossCutting.Security.Encryption;
+using JoinDev.Infra.CrossCutting.Security.Token;
 using JoinDev.Infra.Data;
 using JoinDev.Infra.Data.DAO;
 using JoinDev.Infra.Data.Read;
@@ -38,11 +40,14 @@ namespace JoinDev.Infra.CrossCutting.IoC
             services.AddScoped<IThemeCategoryDAO, ThemeCategoryDAO>();
             services.AddScoped<ILinkSourceDAO, LinkSourceDAO>();
 
-
             services.AddScoped(typeof(IReplicationRepository<>), typeof(ReplicationRepository<>));
 
             // Fluent Validation
             services.AddValidatorsFromAssembly(typeof(RegisterUserCommandValidation).Assembly);
+
+            // Security
+            services.AddScoped<ITokenService, TokenService>();
+            services.AddScoped<IEncryptionService, EncryptionService>();
         }
     }
 }

@@ -1,5 +1,4 @@
-﻿using JoinDev.API.Security;
-using JoinDev.Application.Commands;
+﻿using JoinDev.Application.Commands;
 using JoinDev.Application.Mappers;
 using JoinDev.Domain.Core.Communication;
 using JoinDev.Domain.Core.Communication.Messages.Notifications;

@@ -1,11 +1,5 @@
 ﻿using JoinDev.API.Configurations;
-using JoinDev.Infra.Data;
-using Microsoft.EntityFrameworkCore;
-using JoinDev.API.Security;
-using JoinDev.Infra.Data.Read;
-using MongoDB.Bson.Serialization;
-using MongoDB.Bson.Serialization.Serializers;
-using MongoDB.Bson;
+using JoinDev.Infra.CrossCutting.Security;
 
 namespace JoinDev.API
 {

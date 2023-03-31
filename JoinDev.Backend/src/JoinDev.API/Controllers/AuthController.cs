@@ -1,11 +1,11 @@
-﻿using JoinDev.API.Security;
-using JoinDev.API.Security.Encryption;
-using JoinDev.API.Security.Token;
-using JoinDev.API.ViewModels;
-using JoinDev.Application.Commands;
+﻿using JoinDev.Application.Commands;
+using JoinDev.Application.Queries.ViewModels;
 using JoinDev.Domain.Core.Communication;
 using JoinDev.Domain.Core.Communication.Messages.Notifications;
 using JoinDev.Domain.Data;
+using JoinDev.Infra.CrossCutting.Security;
+using JoinDev.Infra.CrossCutting.Security.Encryption;
+using JoinDev.Infra.CrossCutting.Security.Token;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Options;

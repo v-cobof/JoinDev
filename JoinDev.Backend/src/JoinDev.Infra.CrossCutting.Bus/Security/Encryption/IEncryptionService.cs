@@ -1,4 +1,4 @@
-﻿namespace JoinDev.API.Security.Encryption
+﻿namespace JoinDev.Infra.CrossCutting.Security.Encryption
 {
     public interface IEncryptionService
     {

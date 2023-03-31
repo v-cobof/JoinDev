@@ -27,7 +27,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{90CDF4A5
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "JoinDev.Domain.Tests", "tests\JoinDev.Domain.Tests\JoinDev.Domain.Tests.csproj", "{656BDCB4-1721-4390-9D7E-330EABA8F409}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "JoinDev.Infra.CrossCutting.Bus", "src\JoinDev.Infra.CrossCutting.Bus\JoinDev.Infra.CrossCutting.Bus.csproj", "{DF9EEB93-2E81-4177-B070-6E23A1CAD3B9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "JoinDev.Infra.CrossCutting", "src\JoinDev.Infra.CrossCutting.Bus\JoinDev.Infra.CrossCutting.csproj", "{DF9EEB93-2E81-4177-B070-6E23A1CAD3B9}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "JoinDev.Infra.CrossCutting.IoC", "src\JoinDev.Infra.CrossCutting.IoC\JoinDev.Infra.CrossCutting.IoC.csproj", "{62125301-D879-4B62-9759-8984923746CB}"
 EndProject
@@ -37,7 +37,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "JoinDev.Application.Command
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "JoinDev.Application.Queries", "src\JoinDev.Application.Queries\JoinDev.Application.Queries.csproj", "{D2BF3776-5A19-431F-BF9F-3E182D1DFE35}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JoinDev.Infra.Data.Read", "src\JoinDev.Infra.Data.Read\JoinDev.Infra.Data.Read.csproj", "{9F9DB5B6-D2E2-4E37-98C8-380DB66AB025}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "JoinDev.Infra.Data.Read", "src\JoinDev.Infra.Data.Read\JoinDev.Infra.Data.Read.csproj", "{9F9DB5B6-D2E2-4E37-98C8-380DB66AB025}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

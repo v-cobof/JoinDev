@@ -2,7 +2,7 @@
 using System.Security.Cryptography;
 using Microsoft.Extensions.Options;
 
-namespace JoinDev.API.Security.Encryption
+namespace JoinDev.Infra.CrossCutting.Security.Encryption
 {
     public class EncryptionService : IEncryptionService
     {

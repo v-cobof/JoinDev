@@ -1,4 +1,4 @@
-﻿namespace JoinDev.API.Security
+﻿namespace JoinDev.Infra.CrossCutting.Security
 {
     public class AppSettings
     {

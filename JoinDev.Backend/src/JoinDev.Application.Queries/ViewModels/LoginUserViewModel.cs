@@ -1,4 +1,4 @@
-﻿namespace JoinDev.API.ViewModels
+﻿namespace JoinDev.Application.Queries.ViewModels
 {
     public class LoginUserViewModel
     {

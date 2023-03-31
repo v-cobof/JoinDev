@@ -1,4 +1,4 @@
-﻿namespace JoinDev.API.Security.Token
+﻿namespace JoinDev.Infra.CrossCutting.Security.Token
 {
     public interface ITokenService
     {
