@@ -1,18 +1,16 @@
 ﻿using JoinDev.Application.Models;
 using JoinDev.Domain.Core.Communication.Messages;
+using JoinDev.Domain.Entities;
 
 namespace JoinDev.Application.Events
 {
     public class UserRegisteredEvent : Event
     {
-        public string Name { get; set; }
-        public string Email { get; set; }
+        public UserModel User { get; set; }
 
-        public UserRegisteredEvent(Guid aggregateId, string name, string email)
+        public UserRegisteredEvent(User user)
         {
-            AggregateId = aggregateId;
-            Name = name;
-            Email = email;
+            User = user;
         }
 
         protected UserRegisteredEvent() { }

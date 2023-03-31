@@ -51,7 +51,7 @@ namespace JoinDev.Domain.Entities
             _interestedUsers = new List<User>();
         }
 
-        public void AddProjectRestrictedInfo(ProjectRestrictedInfo projectRestrictedInfo)
+        public void SetProjectRestrictedInfo(ProjectRestrictedInfo projectRestrictedInfo)
         {
             ProjectRestrictedInfo = projectRestrictedInfo;
         }

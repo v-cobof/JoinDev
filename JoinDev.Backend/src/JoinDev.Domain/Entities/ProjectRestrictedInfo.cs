@@ -18,13 +18,23 @@ namespace JoinDev.Domain.Entities
 
         private List<Link> _links;
 
-        public ProjectRestrictedInfo(string description, Guid projectId, List<Link> links)
+        public ProjectRestrictedInfo(string description, Guid projectId)
         {
             Description = description;
             ProjectId = projectId;
-            _links = links;
 
             Validate();
+        }
+
+        public void SetLinks(List<Link> links)
+        {
+            links.ForEach(l =>
+            {
+                l.SetAsProjectLink();
+                l.SetAggregateId(Id);
+            });
+
+            _links = links;
         }
 
         protected ProjectRestrictedInfo() { }

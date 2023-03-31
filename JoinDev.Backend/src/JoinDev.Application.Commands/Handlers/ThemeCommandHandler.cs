@@ -8,6 +8,7 @@ namespace JoinDev.Application.Commands.Handlers
 {
     public class CreateThemeCommandHandler : BaseCommandHandler<CreateThemeCommand>
     {
+        private readonly string THEME_CATEGORY_NOT_FOUND_MESSAGE = "The theme category was not found.";
         private readonly IProjectRepository _projectRepository;
         private readonly IThemeCategoryDAO _themeCategoryDAO;
 
@@ -23,12 +24,12 @@ namespace JoinDev.Application.Commands.Handlers
 
             if (category is null)
             {
-                await Notify(request, "The theme category was not found.");
+                await Notify(request, THEME_CATEGORY_NOT_FOUND_MESSAGE);
                 return CommandResult.Failure();
             }
 
             var theme = new Theme(request.Name, category);
-            theme.AddEvent(new ThemeCreatedEvent());
+            theme.AddEvent(new ThemeCreatedEvent(theme));
             
             _projectRepository.CreateTheme(theme);
             return await _projectRepository.UnitOfWork.Commit();

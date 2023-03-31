@@ -18,14 +18,9 @@ namespace JoinDev.Application.Mappers
             }
         }
 
-        public static void SetAsUserLinks(this IEnumerable<LinkModel> links)
+        public static IEnumerable<Link> ToLinkEntities(this IEnumerable<LinkModel> links)
         {
-            if (links is null) return;
-
-            foreach (var link in links)
-            {
-                link.SetAsUserLink();
-            }
+            return links.Select(t => new Link(t.Name, t.Url, t.LinkSourceId));
         }
     }
 }

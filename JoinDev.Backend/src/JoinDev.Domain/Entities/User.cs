@@ -28,18 +28,28 @@ namespace JoinDev.Domain.Entities
         public IReadOnlyCollection<Project> ProjectsAsCreator => _projectsAsCreator;
 
 
-        public User(string name, string description, List<Link> links, string email, string password)
+        public User(string name, string description, string email, string password)
         {
             Name = name;            
             Description = description;
-            _links = links;
             Email = email;
             Password = password;
         }
 
         // EF
-        protected User() { }     
-        
+        protected User() { }
+
+        public void SetLinks(List<Link> links)
+        {
+            links.ForEach(l =>
+            {
+                l.SetAsUserLink();
+                l.SetAggregateId(Id);
+            });
+
+            _links = links;
+        }
+
         public static class Factory
         {
             public static User CreateUserToRegister(string email, string name, string password)

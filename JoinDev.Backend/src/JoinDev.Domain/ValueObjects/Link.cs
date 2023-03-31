@@ -13,13 +13,11 @@ namespace JoinDev.Domain.ValueObjects
         public LinkSource LinkSource { get; private set; }
         public LinkType LinkType { get; private set; }
 
-        public Link(Guid aggregateId, string name, string url, LinkSource linkSource, LinkType linkType)
+        public Link(string name, string url, Guid linkSourceId)
         {
-            AggregateId = aggregateId;
             Name = name;
             Url = url;
-            LinkSource = linkSource;
-            LinkType = linkType;
+            LinkSourceId = linkSourceId;
         }
 
         protected Link() { }
@@ -45,6 +43,21 @@ namespace JoinDev.Domain.ValueObjects
         public static bool operator !=(Link a, Link b)
         {
             return !(a == b);
+        }
+
+        public void SetAsUserLink()
+        {
+            LinkType = LinkType.UserLink;
+        }
+
+        public void SetAsProjectLink()
+        {
+            LinkType = LinkType.ProjectLink;
+        }
+
+        public void SetAggregateId(Guid id)
+        {
+            AggregateId = id;
         }
     }
 }

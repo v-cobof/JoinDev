@@ -26,7 +26,7 @@ namespace JoinDev.Application.Commands.Handlers.Users
             }
 
             var user = User.Factory.CreateUserToRegister(request.Email, request.Name, request.Password);
-            user.AddEvent(new UserRegisteredEvent(user.Id, user.Name, user.Email));
+            user.AddEvent(new UserRegisteredEvent(user));
 
             _userRepository.Create(user);
 

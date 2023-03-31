@@ -39,6 +39,7 @@ namespace JoinDev.Application.Commands.Handlers.Projects
             }
 
             var project = CreateProject(request, themes);
+            project.AddEvent(new ProjectCreatedEvent(project));
 
             _projectRepository.Create(project);
             return await _projectRepository.UnitOfWork.Commit();

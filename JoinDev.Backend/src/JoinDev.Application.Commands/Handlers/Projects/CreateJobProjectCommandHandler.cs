@@ -1,4 +1,5 @@
-﻿using JoinDev.Domain.Core.Communication;
+﻿using JoinDev.Application.Events;
+using JoinDev.Domain.Core.Communication;
 using JoinDev.Domain.Data;
 using JoinDev.Domain.Entities;
 
@@ -14,7 +15,13 @@ namespace JoinDev.Application.Commands.Handlers.Projects
 
         protected override Project CreateProject(CreateJobProjectCommand request, List<Theme> themes)
         {
-            return new JobProject(request.Title, request.PublicDescription, request.TotalSpots, themes, request.CreatorId, request.JobProjectLevel, request.MemberPayment);
+            return new JobProject(request.Title,
+                                   request.PublicDescription,
+                                   request.TotalSpots,
+                                   themes,
+                                   request.CreatorId,
+                                   request.JobProjectLevel,
+                                   request.MemberPayment);
         }
     }
 }
