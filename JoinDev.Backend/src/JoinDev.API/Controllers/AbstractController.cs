@@ -39,6 +39,13 @@ namespace JoinDev.API.Controllers
             return CustomResponse(await result);
         }
 
+        protected async Task<ActionResult<T>> SendQuery<T>(Query<T> query)
+        {
+            var result = _bus.SendQuery(query);
+
+            return CustomResponse(await result);
+        }
+
         protected bool IsOperationValid()
         {
             return !_notificationHandler.HasNotification();

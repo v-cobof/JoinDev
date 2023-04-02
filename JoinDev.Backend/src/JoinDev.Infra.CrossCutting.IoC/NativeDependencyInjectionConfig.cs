@@ -17,6 +17,7 @@ using JoinDev.Infra.Data.Read;
 using JoinDev.Infra.Data.Repositories;
 using MediatR;
 using Microsoft.Extensions.DependencyInjection;
+using JoinDev.Application.Queries.Handlers;
 using System.Reflection;
 
 namespace JoinDev.Infra.CrossCutting.IoC
@@ -27,6 +28,7 @@ namespace JoinDev.Infra.CrossCutting.IoC
         {
             // Mediator (In memory bus)
             services.AddMediatR(typeof(BaseCommandHandler<>));
+            services.AddMediatR(typeof(BaseQueryHandler<,>));
             services.AddScoped<IBusHandler, BusHandler>();
 
             services.AddTransient(typeof(IPipelineBehavior<,>), typeof(ValidationBehaviour<,>));

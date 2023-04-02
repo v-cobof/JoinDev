@@ -1,4 +1,5 @@
 ﻿using JoinDev.Application.Commands;
+using JoinDev.Application.Queries;
 using JoinDev.Application.Queries.ViewModels;
 using JoinDev.Domain.Core.Communication;
 using JoinDev.Domain.Core.Communication.Messages.Notifications;
@@ -14,45 +15,32 @@ namespace JoinDev.API.Controllers
 {
     public class AuthController : AbstractController
     {
-        private readonly ITokenService _tokenService;
-        private readonly IEncryptionService _encryptionService;
-        private readonly IUserRepository _userRepository;
-        private readonly AppSettings _appSettings;
 
-        public AuthController(INotificationHandler<DomainNotification> notifications,
-                              ITokenService tokenService,
-                              IEncryptionService encryptionService,
-                              IUserRepository userRepository,
-                              IOptions<AppSettings> options,
-                              IBusHandler bus
-        ) : base(notifications, bus)
+        public AuthController(INotificationHandler<DomainNotification> notifications, IBusHandler bus) : base(notifications, bus)
         {
-            _encryptionService = encryptionService;
-            _tokenService = tokenService;
-            _userRepository = userRepository;
-            _appSettings = options.Value;
         }
 
         [HttpPost]
         [Route("register")]
         public async Task<ActionResult> Register([FromBody] RegisterUserCommand command)
         {
-            command.Password = _encryptionService.Encrypt(command.Password);
-
-            var result = _bus.SendCommand(command);
-
-            return CustomResponse(await result);
+            return await SendCommand(command);
         }
 
         [HttpPost]
         [Route("login")]
-        public async Task<ActionResult<LoginResponseViewModel>> Login([FromBody] LoginUserViewModel viewModel)
+        public async Task<ActionResult<LoginResponseViewModel>> Login([FromBody] LoginQuery query)
         {
+            var result = await SendQuery(query);
+
+            return result;
+
+            /*
             var user = await _userRepository.GetByEmail(viewModel.Email);
 
             if (user is null) return NotFound();
 
-            if(!_encryptionService.IsEqual(user.Password, viewModel.Password))
+            if (!_encryptionService.IsEqual(user.Password, viewModel.Password))
             {
                 return Forbid();
             }
@@ -69,7 +57,7 @@ namespace JoinDev.API.Controllers
                     Email = email,
                     Id = user.Id.ToString()
                 }
-            };
+            };*/
         }
     }
 }

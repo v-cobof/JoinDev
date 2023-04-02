@@ -46,5 +46,10 @@ namespace JoinDev.Infra.CrossCutting.Bus
         {
             return await _mediator.Send(command);
         }
+
+        public async Task<TRes> SendQuery<TRes>(Query<TRes> query)
+        {
+            return await _mediator.Send(query);
+        }
     }
 }
