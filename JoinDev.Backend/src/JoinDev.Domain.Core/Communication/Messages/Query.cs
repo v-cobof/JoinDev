@@ -10,5 +10,7 @@ namespace JoinDev.Domain.Core.Communication.Messages
 {
     public abstract class Query<T> : Message, IRequest<QueryResult<T>>
     {
+        public int PageSize { get; set; }
+        public int PageNumber { get; set; }
     }
 }

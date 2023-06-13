@@ -4,9 +4,9 @@ using MassTransit;
 
 namespace JoinDev.Application.Events.Handlers
 {
-    public class ProjectCreatedEventHandler : BaseDataReplicationEventHandler<ProjectCreatedEvent, ProjectModel>
+    public class ProjectCreatedEventHandler : BaseDataReplicationEventHandler<ProjectCreatedEvent, ProjectReadModel>
     {
-        public ProjectCreatedEventHandler(IReplicationRepository<ProjectModel> repository) : base(repository)
+        public ProjectCreatedEventHandler(IReplicationRepository<ProjectReadModel> repository) : base(repository)
         {
         }
 

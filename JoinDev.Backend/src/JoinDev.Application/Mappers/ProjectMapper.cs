@@ -10,7 +10,7 @@ namespace JoinDev.Application.Mappers
 {
     public static class ProjectMapper
     {
-        public static void HandleProjectTypeMapping(this ProjectModel incompleteModel, Project project)
+        public static void HandleProjectTypeMapping(this ProjectReadModel incompleteModel, Project project)
         {
             if (project is StudyProject) 
                 HandleStudyProject(incompleteModel, project as StudyProject);
@@ -19,13 +19,13 @@ namespace JoinDev.Application.Mappers
                 HandleJobProject(incompleteModel, project as JobProject);     
         }
 
-        private static void HandleStudyProject(ProjectModel incompleteModel, StudyProject project)
+        private static void HandleStudyProject(ProjectReadModel incompleteModel, StudyProject project)
         {
             incompleteModel.ProjectType = ProjectType.Study;
             incompleteModel.StudyProjectLevel = project.StudyProjectLevel;
         }
 
-        private static void HandleJobProject(ProjectModel incompleteModel, JobProject project)
+        private static void HandleJobProject(ProjectReadModel incompleteModel, JobProject project)
         {
             incompleteModel.ProjectType = ProjectType.Job;
             incompleteModel.JobProjectLevel = project.JobProjectLevel;

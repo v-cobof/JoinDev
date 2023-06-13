@@ -8,6 +8,7 @@
 
   <ItemGroup>
 	 <PackageReference Include="MediatR" Version="11.1.0" />
+	 <ProjectReference Include="..\JoinDev.Application\JoinDev.Application.csproj" />
     <ProjectReference Include="..\JoinDev.Domain.Core\JoinDev.Domain.Core.csproj" />
     <ProjectReference Include="..\JoinDev.Domain\JoinDev.Domain.csproj" />
     <ProjectReference Include="..\JoinDev.Infra.CrossCutting.Bus\JoinDev.Infra.CrossCutting.csproj" />

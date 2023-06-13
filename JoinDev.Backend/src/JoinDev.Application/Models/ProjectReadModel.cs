@@ -4,27 +4,17 @@ using JoinDev.Domain.Enums;
 
 namespace JoinDev.Application.Models
 {
-    public class ProjectModel : BaseModel
+    public class ProjectReadModel : ProjectBaseModel
     {
-        public string Title { get; set; }
-        public string PublicDescription { get; set; }
-        public int TotalSpots { get; set; }
-        public ProjectStatus ProjectStatus { get; set; }
-        public Guid CreatorId { get; set; }
-        public int AvailableSpots { get; set; }
-        public ProjectType ProjectType { get; set; }
-        private List<ThemeModel> Themes { get; set; }
         public string RestrictedDescription { get; set; }
         public List<LinkModel> Links { get; set; }
+        public Guid CreatorId { get; set; }
 
-        public StudyProjectLevel? StudyProjectLevel { get; set; }
-        public JobProjectLevel? JobProjectLevel { get; set; }
-        public decimal? MemberPayment { get; set; }
-
-        public static implicit operator ProjectModel(Project project)
+        public static implicit operator ProjectReadModel(Project project)
         {
-            var model =  new ProjectModel()
+            var model =  new ProjectReadModel()
             {
+                Id = project.Id,             
                 Title = project.Title,
                 PublicDescription = project.PublicDescription,
                 TotalSpots = project.TotalSpots,

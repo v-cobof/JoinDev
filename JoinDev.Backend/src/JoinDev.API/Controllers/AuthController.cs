@@ -31,33 +31,7 @@ namespace JoinDev.API.Controllers
         [Route("login")]
         public async Task<ActionResult<LoginResponseViewModel>> Login([FromBody] LoginQuery query)
         {
-            var result = await SendQuery(query);
-
-            return result;
-
-            /*
-            var user = await _userRepository.GetByEmail(viewModel.Email);
-
-            if (user is null) return NotFound();
-
-            if (!_encryptionService.IsEqual(user.Password, viewModel.Password))
-            {
-                return Forbid();
-            }
-
-            var email = user.Email;
-            var token = _tokenService.GenerateJwt(email);
-
-            return new LoginResponseViewModel()
-            {
-                AccessToken = token,
-                ExpiresIn = TimeSpan.FromHours(_appSettings.ExpiresInHours).TotalSeconds,
-                UserToken = new UserTokenViewModel()
-                {
-                    Email = email,
-                    Id = user.Id.ToString()
-                }
-            };*/
+            return await SendQuery(query);
         }
     }
 }

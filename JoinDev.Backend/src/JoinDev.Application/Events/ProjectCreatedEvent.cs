@@ -7,7 +7,7 @@ namespace JoinDev.Application.Events
 {
     public class ProjectCreatedEvent : Event
     {
-        public ProjectModel ProjectModel { get; set; }
+        public ProjectReadModel ProjectModel { get; set; }
 
         public ProjectCreatedEvent(Project project)
         {
